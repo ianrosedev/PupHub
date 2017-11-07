@@ -6,7 +6,6 @@ import App from './components/App/App';
 import 'normalize.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { StyleRoot } from 'radium';
-import './index.css';
 
 ReactDOM.render(
   <Router>
