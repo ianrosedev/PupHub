@@ -46,6 +46,20 @@ const SearchForm = ({ handleSubmit }) => {
           </label>
         ))}
       </div>
+      <div>
+        <label>Good With</label>
+        <br />
+        {['Doesn\'t Matter', 'Kids', 'Dogs', 'Cats'].map((item) => (
+          <label key={'goodWith' + item}>
+            <Field
+              name='goodWith'
+              component={CheckboxArray}
+              itemValue={item}
+            />
+            {' ' + item + ' '}
+          </label>
+        ))}
+      </div>
       <br />
       <button type='submit'>Submit</button>
     </form>
