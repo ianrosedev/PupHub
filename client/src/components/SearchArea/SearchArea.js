@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ContentCentered from '../ContentCentered/ContentCentered';
+import SearchForm from '../SearchForm/SearchForm';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
@@ -14,6 +15,8 @@ class SearchArea extends Component {
       isOpen: !prevState.isOpen
     }))
   );
+
+  onSubmit = (values) => console.log(values);
 
   render() {
     const style = {
@@ -41,10 +44,7 @@ class SearchArea extends Component {
       <div style={style.base}>
         <div style={style.content}>
           <ContentCentered>
-            <p>bla bla bla</p>
-            <p>bla bla bla</p>
-            <p>bla bla bla</p>
-            <p>bla bla bla</p>
+            <SearchForm onSubmit={this.onSubmit} />
           </ContentCentered>
         </div>
         <div style={style.toggleControl}>
