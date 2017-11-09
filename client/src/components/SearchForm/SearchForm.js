@@ -33,6 +33,21 @@ const SearchForm = ({ handleSubmit }) => {
         ))}
       </div>
       <div>
+        <label>Age</label>
+        <br />
+        {['Any', 'Young', 'Adult'].map((item) => (
+          <label key={'age' + item}>
+            <Field
+              name='age'
+              component='input'
+              type='radio'
+              value={item}
+            />
+            {' ' + item + ' '}
+          </label>
+        ))}
+      </div>
+      <div>
         <label>Size</label>
         <br />
         {['Small', 'Medium', 'Large', 'X-Large'].map((item) => (
