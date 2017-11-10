@@ -4,7 +4,7 @@ import Radium from 'radium';
 const ContentCentered = ({ children }) => {
   const style = {
     base: {
-      margin: '3vh 6vw'
+      padding: '3vh 6vw'
     }
   };
 

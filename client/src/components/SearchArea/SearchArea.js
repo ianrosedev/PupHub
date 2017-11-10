@@ -20,7 +20,9 @@ class SearchArea extends Component {
 
   render() {
     const style = {
-      base: {},
+      base: {
+        backgroundColor: colors.primaryLightest
+      },
       content: {
         display: this.state.isOpen ? 'block' : 'none'
       },
