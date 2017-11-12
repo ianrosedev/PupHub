@@ -5,6 +5,14 @@
   "main": "index.js",
   "author": "Ian Rose",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianrosedev/PupHub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ianrosedev/PupHub/issues"
+  },
+  "homepage": "https://github.com/ianrosedev/PupHub#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
