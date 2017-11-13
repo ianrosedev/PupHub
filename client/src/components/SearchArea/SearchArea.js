@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import SearchForm from '../SearchForm/SearchForm';
+import Map from '../Map/Map';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
@@ -47,6 +48,7 @@ class SearchArea extends Component {
         <div style={style.content}>
           <ContentCentered>
             <SearchForm onSubmit={this.onSubmit} />
+            <Map/>
           </ContentCentered>
         </div>
         <div style={style.toggleControl}>
