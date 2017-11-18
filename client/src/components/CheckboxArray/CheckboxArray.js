@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _without from 'lodash/without';
 
-class CheckboxArray extends Component {
-  onChange = (e) => {
-    const { input, itemValue } = this.props;
+const CheckboxArray = ({ input, itemValue }) => {
+  const onChange = (e) => {
     const oldValues = input.value || [];
     let newValues = _without(oldValues, itemValue);
 
     if (e.target.checked) {
       newValues = [...oldValues, itemValue];
     }
-
     input.onChange(newValues);
-  }
+  };
 
-  render() {
-    const { input, itemValue } = this.props;
-
-    return (
-      <input
-        type='checkbox'
-        checked={input.value.includes(itemValue)}
-        onChange={this.onChange}
-      />
-    );
-  }
-}
+  return (
+    <input
+      type='checkbox'
+      checked={input.value.includes(itemValue)}
+      onChange={onChange}
+    />
+  );
+};
 
 export default CheckboxArray;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CheckboxArray from '../CheckboxArray/CheckboxArray';
+import SearchBarInput from '../SearchBarInput/SearchBarInput';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
@@ -24,14 +25,6 @@ const SearchForm = ({ handleSubmit }) => {
         backgroundColor: colors.secondary,
         padding: '8px 8px 10px 8px',
         color: 'white'
-      },
-      input: {
-        width: '100%',
-        border: 0,
-        padding: '0 10px',
-        // Fix rounded corners on Safari mobile
-        borderRadius: 0,
-        WebkitAppearance: 'none'
       },
       button: {
         backgroundColor: colors.secondary,
@@ -81,11 +74,8 @@ const SearchForm = ({ handleSubmit }) => {
         >
         </i>
         <Field
-          style={style.searchBar.input}
           name='location'
-          component='input'
-          type='text'
-          placeholder='Please enter a location...'
+          component={SearchBarInput}
         />
         <button
           style={style.searchBar.button}
