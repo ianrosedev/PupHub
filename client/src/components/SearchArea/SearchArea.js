@@ -10,6 +10,13 @@ class SearchArea extends Component {
     isOpen: true
   };
 
+  formInitialValues = {
+    sex: 'Any',
+    age: 'Any',
+    size: ['Small', 'Medium', 'Large', 'X-Large'],
+    goodWith: 'Doesn\'t Matter'
+  };
+
   searchAreaToggle = () => (
     this.setState((prevState) => ({
       isOpen: !prevState.isOpen
@@ -46,7 +53,10 @@ class SearchArea extends Component {
       <div style={style.base}>
         <div style={style.content}>
           <ContentCentered>
-            <SearchForm onSubmit={this.onSubmit} />
+            <SearchForm
+              onSubmit={this.onSubmit}
+              initialValues={this.formInitialValues}
+            />
             <Map/>
           </ContentCentered>
         </div>
