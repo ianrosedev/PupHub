@@ -14,7 +14,7 @@ class SearchArea extends Component {
     sex: 'Any',
     age: 'Any',
     size: ['Small', 'Medium', 'Large', 'X-Large'],
-    goodWith: 'Doesn\'t Matter'
+    goodWith: ['Doesn\'t Matter']
   };
 
   searchAreaToggle = () => (
