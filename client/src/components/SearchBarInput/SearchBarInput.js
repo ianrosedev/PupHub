@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { change } from 'redux-form';
+import zips from 'zips';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import Radium from 'radium';
 
@@ -15,13 +16,40 @@ class SearchBarInput extends Component {
     }
   };
 
-  onChange = () => {
-    this.props.meta.dispatch(change('search', 'location', this.textInput.value));
+  getGeocode = (location) => {
+    const dispatch = this.props.meta.dispatch;
+
+    // Dispatch location
+    dispatch(change('search', 'location', location));
+
+    this.geocoder.geocode({ address: location }, (results, status) => {
+      if (status === 'OK') {
+        // Dispatch coordinates
+        dispatch(change('search', 'locationCoords', {
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng()
+        }));
+
+        // Dispatch zipcode
+        dispatch(change('search', 'locationZip', zips.getByLocation(
+          results[0].geometry.location.lat(),
+          results[0].geometry.location.lng()
+        ).zip));
+      } else {
+        console.log(status);
+      }
+    });
   };
+
+  componentDidMount() {
+    this.geocoder = new window.google.maps.Geocoder();
+  }
 
   render() {
     return (
-      <StandaloneSearchBox onPlacesChanged={this.onChange}>
+      <StandaloneSearchBox
+        onPlacesChanged={() => this.getGeocode(this.textInput.value)}
+      >
         <input
           {...this.props.input}
           style={this.style.base}
