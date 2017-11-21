@@ -1,14 +1,22 @@
 import React from 'react';
-import _without from 'lodash/without';
 
 const CheckboxArray = ({ input, itemValue }) => {
   const onChange = (e) => {
-    const oldValues = input.value || [];
-    let newValues = _without(oldValues, itemValue);
+    let oldValues;
+    let newValues;
+
+    if (itemValue === 'Show All') {
+      oldValues = [];
+      newValues = ['Show All'];
+    } else {
+      oldValues = input.value.filter(v => v !== 'Show All') || [];
+      newValues = oldValues.filter(v => v !== itemValue);
+    }
 
     if (e.target.checked) {
       newValues = [...oldValues, itemValue];
     }
+
     input.onChange(newValues);
   };
 

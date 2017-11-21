@@ -137,7 +137,7 @@ const SearchForm = ({ handleSubmit }) => {
         </div>
         <div style={style.searchOptions.block}>
           <h3 style={style.searchOptions.h3}>Good With</h3>
-          {['Doesn\'t Matter', 'Kids', 'Dogs', 'Cats'].map((item) => (
+          {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
             <span
               key={'goodWith' + item}
               style={style.searchOptions.span}
