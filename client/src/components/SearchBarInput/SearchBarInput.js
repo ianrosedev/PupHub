@@ -41,8 +41,27 @@ class SearchBarInput extends Component {
     });
   };
 
+  getUserLocation = () => {
+    // Reverse geocode to get city
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.geocoder.geocode({
+        location: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      },
+        (results, status) => {
+          if (status === 'OK') {
+            this.getGeocode(results[3].formatted_address);
+          }
+        }
+      );
+    });
+  };
+
   componentDidMount() {
     this.geocoder = new window.google.maps.Geocoder();
+    this.getUserLocation();
   }
 
   render() {
