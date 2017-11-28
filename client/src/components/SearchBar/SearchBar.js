@@ -6,6 +6,10 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
 class SearchBar extends Component {
+  state = {
+    isFindingPosition: false
+  };
+
   style = {
     base: {
       display: 'flex',
@@ -77,8 +81,12 @@ class SearchBar extends Component {
   };
 
   getUserLocation = () => {
-    // Reverse geocode to get city
-    navigator.geolocation.getCurrentPosition((position) => {
+    // Show waiting message
+    this.setState({
+      isFindingPosition: true
+    });
+
+    const locationSuccess = (position) => {
       this.geocoder.geocode({
         location: {
           lat: position.coords.latitude,
@@ -86,12 +94,29 @@ class SearchBar extends Component {
         }
       },
         (results, status) => {
+          this.setState({
+            isFindingPosition: false
+          });
+
           if (status === 'OK') {
             this.getGeocode(results[3].formatted_address);
           }
         }
       );
-    });
+    };
+
+    const locationError = (error) => {
+      // Default to user input
+      this.setState({
+        isFindingPosition: false
+      });
+    };
+
+    // Reverse geocode to get city
+    navigator.geolocation.getCurrentPosition(
+      position => locationSuccess(position),
+      error => locationError(error)
+    );
   };
 
   componentDidMount() {
@@ -118,7 +143,10 @@ class SearchBar extends Component {
               {...input}
               style={this.style.base.input}
               type='text'
-              placeholder='Please enter a location...'
+              placeholder={this.state.isFindingPosition ?
+                'Getting your location, please wait a moment...' :
+                'Please enter a location...'
+              }
               ref={input => this.textInput = input}
             />
           </StandaloneSearchBox>
