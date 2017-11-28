@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { required } from '../../helpers/formValidation/formValidation';
 import CheckboxArray from '../CheckboxArray/CheckboxArray';
-import SearchBarInput from '../SearchBarInput/SearchBarInput';
+import SearchBar from '../SearchBar/SearchBar';
 import Radium from 'radium';
-import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 const SearchForm = ({ handleSubmit }) => {
@@ -16,25 +16,6 @@ const SearchForm = ({ handleSubmit }) => {
         float: 'none',
         width: '100%'
       },
-    },
-    searchBar: {
-      display: 'flex',
-      border: `1px solid ${colors.secondary}`,
-      borderRadius: 4,
-      i: {
-        backgroundColor: colors.secondary,
-        padding: '8px 8px 10px 8px',
-        color: 'white'
-      },
-      button: {
-        backgroundColor: colors.secondary,
-        width: 100,
-        border: 0,
-        borderRadius: 0,
-        padding: 0,
-        color: 'white',
-        cursor: 'pointer'
-      }
     },
     searchOptions: {
       display: 'flex',
@@ -66,24 +47,11 @@ const SearchForm = ({ handleSubmit }) => {
       style={style.base}
       onSubmit={handleSubmit}
     >
-      <div style={style.searchBar}>
-        <i
-          style={style.searchBar.i}
-          className='fa fa-search'
-          aria-hidden='true'
-        >
-        </i>
-        <Field
-          name='location'
-          component={SearchBarInput}
-        />
-        <button
-          style={style.searchBar.button}
-          type='submit'
-        >
-          Submit
-        </button>
-      </div>
+      <Field
+        name='location'
+        component={SearchBar}
+        validate={required}
+      />
       <div style={style.searchOptions}>
         <div style={style.searchOptions.block}>
           <h3 style={style.searchOptions.h3}>Sex</h3>

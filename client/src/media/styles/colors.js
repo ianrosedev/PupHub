@@ -5,7 +5,8 @@ const colors = {
   primaryDark: '#ff5722',
   secondaryLight: '#67daff',
   secondary: '#03a9f4',
-  secondaryDark: '#007ac1'
+  secondaryDark: '#007ac1',
+  warning: '#f00'
 };
 
 export default colors;
