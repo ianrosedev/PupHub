@@ -101,12 +101,11 @@ class SearchBar extends Component {
         }
       },
         (results, status) => {
-          this.setState({
-            isFindingPosition: false
-          });
-
           if (status === 'OK') {
-            this.getGeocode(results[3].formatted_address);
+            this.getGeocode(results[0].formatted_address);
+            this.setState({
+              isFindingPosition: false
+            });
           } else {
             console.log(status);
           }

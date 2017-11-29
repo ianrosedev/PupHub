@@ -32,7 +32,7 @@ class SearchArea extends Component {
     this.setState({
       map: {
         coords: values.locationCoords,
-        zoom: 8,
+        zoom: 9,
         isMarkerShown: true
       }
     });
