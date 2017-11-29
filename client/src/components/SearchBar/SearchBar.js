@@ -58,21 +58,28 @@ class SearchBar extends Component {
   getGeocode = (location) => {
     const dispatch = this.props.meta.dispatch;
 
-    // Dispatch location
-    dispatch(change('search', 'location', location));
-
-    this.geocoder.geocode({ address: location }, (results, status) => {
+    this.geocoder.geocode({
+      address: location,
+      componentRestrictions: {
+        country: 'US'
+      }
+    },
+    (results, status) => {
       if (status === 'OK') {
+        const address = results[0].formatted_address;
+        const lat = results[0].geometry.location.lat();
+        const lng = results[0].geometry.location.lng();
+
+        // Dispatch location
+        dispatch(change('search', 'location', address));
+
         // Dispatch coordinates
-        dispatch(change('search', 'locationCoords', {
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng()
-        }));
+        dispatch(change('search', 'locationCoords', { lat, lng }));
 
         // Dispatch zipcode
         dispatch(change('search', 'locationZip', zips.getByLocation(
-          results[0].geometry.location.lat(),
-          results[0].geometry.location.lng()
+          lat,
+          lng
         ).zip));
       } else {
         console.log(status);
@@ -100,6 +107,8 @@ class SearchBar extends Component {
 
           if (status === 'OK') {
             this.getGeocode(results[3].formatted_address);
+          } else {
+            console.log(status);
           }
         }
       );

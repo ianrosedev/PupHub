@@ -7,7 +7,12 @@ import colors from '../../media/styles/colors';
 
 class SearchArea extends Component {
   state = {
-    isOpen: true
+    isOpen: true,
+    map: {
+      coords: { lat: 37, lng: -96 },
+      zoom: 3,
+      isMarkerShown: false
+    }
   };
 
   formInitialValues = {
@@ -23,7 +28,17 @@ class SearchArea extends Component {
     }))
   );
 
-  onSubmit = (values) => console.log(values);
+  onSubmit = (values) => {
+    this.setState({
+      map: {
+        coords: values.locationCoords,
+        zoom: 8,
+        isMarkerShown: true
+      }
+    });
+
+    console.log(values);
+  };
 
   render() {
     const style = {
@@ -57,7 +72,11 @@ class SearchArea extends Component {
               onSubmit={this.onSubmit}
               initialValues={this.formInitialValues}
             />
-            <Map/>
+            <Map
+              coords={this.state.map.coords}
+              zoom={this.state.map.zoom}
+              isMarkerShown={this.state.map.isMarkerShown}
+            />
           </ContentCentered>
         </div>
         <div style={style.toggleControl}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import Radium from 'radium';
 
 const defaultProps = {
@@ -8,15 +8,16 @@ const defaultProps = {
   mapElement: <div style={{ height: '100%' }} />
 };
 
-const Map = withGoogleMap((props) => {
-  return (
-    <GoogleMap
-      defaultZoom={3}
-      defaultCenter={{ lat: 37, lng: -96 }}
-    >
-    </GoogleMap>
-  );
-});
+const Map = withGoogleMap((props) => (
+  <GoogleMap
+    center={props.coords}
+    zoom={props.zoom}
+  >
+    {props.isMarkerShown &&
+      <Marker position={props.coords} />
+    }
+  </GoogleMap>
+));
 
 Map.defaultProps = defaultProps;
 
