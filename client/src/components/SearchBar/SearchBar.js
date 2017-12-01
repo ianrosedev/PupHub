@@ -133,7 +133,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { input, meta: { touched, error } } = this.props;
+    const { input, meta: { touched, error }, isDisabled } = this.props;
 
     return (
       <div style={(touched && error) ? this.style.error.border : null}>
@@ -161,6 +161,7 @@ class SearchBar extends Component {
           <button
             style={this.style.base.button}
             type='submit'
+            disabled={isDisabled}
           >
             Submit
           </button>

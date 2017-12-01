@@ -1,12 +1,14 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { reduxForm, formValueSelector, Field } from 'redux-form';
 import { required } from '../../helpers/formValidation/formValidation';
 import CheckboxArray from '../CheckboxArray/CheckboxArray';
 import SearchBar from '../SearchBar/SearchBar';
 import Radium from 'radium';
+import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
-const SearchForm = ({ handleSubmit }) => {
+let SearchForm = ({ handleSubmit, size, goodWith }) => {
   const style = {
     base: {
       float: 'left',
@@ -23,21 +25,35 @@ const SearchForm = ({ handleSubmit }) => {
       [`@media (max-width: ${sizes.small})`]: {
         flexDirection: 'column'
       },
+      marginTop: 5,
       block: {
         margin: '2vh 5vw 2vh 0',
         [`@media (max-width: ${sizes.small})`]: {
           margin: '1vh 1vw'
-        }
+        },
+        padding: 5
       },
       h3: {
         display: 'block',
         textDecoration: 'underline',
-        marginBottom: 5,
+        margin: '0 0 5px 0',
         padding: 0
       },
       span: {
         display: 'block',
         marginBottom: 5
+      }
+    },
+    error: {
+      border: {
+        border: `1px solid ${colors.warning}`,
+        borderRadius: 5,
+      },
+      text: {
+        display:'block',
+        padding: '4px 0',
+        color: colors.warning,
+        fontSize: 18
       }
     }
   };
@@ -51,6 +67,9 @@ const SearchForm = ({ handleSubmit }) => {
         name='location'
         component={SearchBar}
         validate={required}
+        isDisabled={(size && size.length === 0) ||
+          (goodWith && goodWith.length === 0)
+        }
       />
       <div style={style.searchOptions}>
         <div style={style.searchOptions.block}>
@@ -87,7 +106,15 @@ const SearchForm = ({ handleSubmit }) => {
             </span>
           ))}
         </div>
-        <div style={style.searchOptions.block}>
+        <div
+          style={(size && size.length > 0) ?
+            style.searchOptions.block :
+            {
+              ...style.searchOptions.block,
+              ...style.error.border
+            }
+          }
+        >
           <h3 style={style.searchOptions.h3}>Size</h3>
           {['Small', 'Medium', 'Large', 'X-Large'].map((item) => (
             <span
@@ -102,8 +129,24 @@ const SearchForm = ({ handleSubmit }) => {
               {' ' + item + ' '}
             </span>
           ))}
+          <span
+            style={(size && size.length > 0) ?
+              { display: 'none' } :
+              style.error.text
+            }
+          >
+            Required Field!
+          </span>
         </div>
-        <div style={style.searchOptions.block}>
+        <div
+          style={(goodWith && goodWith.length > 0) ?
+            style.searchOptions.block :
+            {
+              ...style.searchOptions.block,
+              ...style.error.border
+            }
+          }
+        >
           <h3 style={style.searchOptions.h3}>Good With</h3>
           {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
             <span
@@ -118,10 +161,30 @@ const SearchForm = ({ handleSubmit }) => {
               {' ' + item + ' '}
             </span>
           ))}
+          <span
+            style={(goodWith && goodWith.length > 0) ?
+              { display: 'none' } :
+              style.error.text
+            }
+          >
+            Required Field!
+          </span>
         </div>
       </div>
     </form>
   );
 };
 
-export default reduxForm({ form: 'search' })(Radium(SearchForm));
+const selector = formValueSelector('search');
+SearchForm = reduxForm({ form: 'search' })(Radium(SearchForm));
+
+SearchForm = connect((state) => {
+  const { size, goodWith } = selector(state, 'size', 'goodWith');
+
+  return {
+    size,
+    goodWith
+  };
+})(SearchForm);
+
+export default SearchForm;
