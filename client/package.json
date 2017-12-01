@@ -20,6 +20,9 @@
     "redux-thunk": "^2.2.0",
     "zips": "^1.1.2"
   },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
