@@ -1,10 +1,12 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
+import { reducer as form } from 'redux-form';
+import search from './search/search';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
-  form: formReducer
+  form,
+  search
 });
 
 export const store = createStore(

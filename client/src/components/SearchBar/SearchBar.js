@@ -71,13 +71,13 @@ class SearchBar extends Component {
         const lng = results[0].geometry.location.lng();
 
         // Dispatch location
-        dispatch(change('search', 'location', address));
+        dispatch(change('searchForm', 'location', address));
 
         // Dispatch coordinates
-        dispatch(change('search', 'locationCoords', { lat, lng }));
+        dispatch(change('searchForm', 'locationCoords', { lat, lng }));
 
         // Dispatch zipcode
-        dispatch(change('search', 'locationZip', zips.getByLocation(
+        dispatch(change('searchForm', 'locationZip', zips.getByLocation(
           lat,
           lng
         ).zip));

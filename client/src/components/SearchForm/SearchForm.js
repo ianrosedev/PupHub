@@ -175,8 +175,8 @@ let SearchForm = ({ handleSubmit, size, goodWith }) => {
   );
 };
 
-const selector = formValueSelector('search');
-SearchForm = reduxForm({ form: 'search' })(Radium(SearchForm));
+const selector = formValueSelector('searchForm');
+SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));
 
 SearchForm = connect((state) => {
   const { size, goodWith } = selector(state, 'size', 'goodWith');
