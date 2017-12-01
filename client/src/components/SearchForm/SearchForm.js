@@ -47,7 +47,7 @@ let SearchForm = ({ handleSubmit, size, goodWith }) => {
     error: {
       border: {
         border: `1px solid ${colors.warning}`,
-        borderRadius: 5,
+        borderRadius: 5
       },
       text: {
         display:'block',

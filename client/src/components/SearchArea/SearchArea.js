@@ -15,29 +15,6 @@ class SearchArea extends Component {
     }
   };
 
-  style = {
-    base: {
-      backgroundColor: colors.primaryLightest
-    },
-    content: {
-      display: this.state.isOpen ? 'block' : 'none'
-    },
-    toggleControl: {
-      width: '100vw',
-      height: 35,
-      backgroundColor: colors.primaryDark,
-      borderTop: `1px solid ${colors.primaryLight}`,
-      borderBottom: `1px solid ${colors.primaryLight}`,
-      icons: {
-        float: 'right',
-        marginRight: '6vw',
-        ':hover': {
-          cursor: 'pointer'
-        }
-      }
-    }
-  };
-
   formInitialValues = {
     sex: 'Any',
     age: 'Any',
@@ -64,9 +41,32 @@ class SearchArea extends Component {
   };
 
   render() {
+    const style = {
+      base: {
+        backgroundColor: colors.primaryLightest
+      },
+      content: {
+        display: this.state.isOpen ? 'block' : 'none'
+      },
+      toggleControl: {
+        width: '100vw',
+        height: 35,
+        backgroundColor: colors.primaryDark,
+        borderTop: `1px solid ${colors.primaryLight}`,
+        borderBottom: `1px solid ${colors.primaryLight}`,
+        icons: {
+          float: 'right',
+          marginRight: '6vw',
+          ':hover': {
+            cursor: 'pointer'
+          }
+        }
+      }
+    };
+
     return (
-      <div style={this.style.base}>
-        <div style={this.style.content}>
+      <div style={style.base}>
+        <div style={style.content}>
           <ContentCentered>
             <SearchForm
               onSubmit={this.onSubmit}
@@ -79,8 +79,8 @@ class SearchArea extends Component {
             />
           </ContentCentered>
         </div>
-        <div style={this.style.toggleControl}>
-          <span style={this.style.toggleControl.icons}>
+        <div style={style.toggleControl}>
+          <span style={style.toggleControl.icons}>
             <i
               className={`fa fa-caret-${this.state.isOpen ? 'up' : 'down'} fa-2x aria-hidden=true`}
               onClick={this.searchAreaToggle}
