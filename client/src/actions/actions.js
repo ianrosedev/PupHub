@@ -1,7 +1,8 @@
 import {
   SEARCH_DATA_REQUEST,
   SEARCH_DATA_RESPONSE,
-  SEARCH_DATA_ERROR
+  SEARCH_DATA_ERROR,
+  SET_MAP_OPTIONS
 } from '../constants/constants';
 
 // Action Creators
@@ -24,13 +25,19 @@ export const searchDataError = () => ({
   isError: true
 });
 
+export const setMapOptions = ({ zoom, isMarkerShown }) => ({
+  type: SET_MAP_OPTIONS,
+  zoom,
+  isMarkerShown
+});
+
 // Thunk Action Creators
-export const searchDataFetch = ({ sex, age, size, goodWith }) => {
+export const searchDataFetch = (zipcode) => {
   return (dispatch) => {
     dispatch(searchDataRequest());
 
     return (
-      fetch(/* request */)
+      fetch(`search/general/${zipcode}`)
         .then(response => response.json())
         .then(response => dispatch(searchDataResponse(response)))
         .catch(error => dispatch(searchDataError()))

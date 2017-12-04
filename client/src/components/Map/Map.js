@@ -8,13 +8,21 @@ const defaultProps = {
   mapElement: <div style={{ height: '100%' }} />
 };
 
-const Map = withGoogleMap((props) => (
+const Map = withGoogleMap(({
+  defaultCenter,
+  zoom,
+  isMarkerShown,
+  locationCoords
+}) => (
   <GoogleMap
-    center={props.coords}
-    zoom={props.zoom}
+    center={(!isMarkerShown) ?
+      defaultCenter :
+      locationCoords
+    }
+    zoom={zoom}
   >
-    {props.isMarkerShown &&
-      <Marker position={props.coords} />
+    {isMarkerShown &&
+      <Marker position={locationCoords} />
     }
   </GoogleMap>
 ));

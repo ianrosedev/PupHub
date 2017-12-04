@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import SearchForm from '../SearchForm/SearchForm';
-import Map from '../Map/Map';
+import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
 class SearchArea extends Component {
   state = {
-    isOpen: true,
-    map: {
-      coords: { lat: 37, lng: -96 },
-      zoom: 3,
-      isMarkerShown: false
-    }
+    isOpen: true
   };
 
   formInitialValues = {
@@ -29,15 +24,11 @@ class SearchArea extends Component {
   );
 
   onSubmit = (values) => {
-    this.setState({
-      map: {
-        coords: values.locationCoords,
-        zoom: 9,
-        isMarkerShown: true
-      }
+    this.props.setMapOptions({
+      zoom: 9,
+      isMarkerShown: true
     });
-
-    console.log(values);
+    this.props.searchDataFetch(values.locationZip);
   };
 
   render() {
@@ -72,11 +63,7 @@ class SearchArea extends Component {
               onSubmit={this.onSubmit}
               initialValues={this.formInitialValues}
             />
-            <Map
-              coords={this.state.map.coords}
-              zoom={this.state.map.zoom}
-              isMarkerShown={this.state.map.isMarkerShown}
-            />
+            <MapContainer />
           </ContentCentered>
         </div>
         <div style={style.toggleControl}>
