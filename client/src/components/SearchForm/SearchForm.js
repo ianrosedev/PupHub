@@ -8,7 +8,7 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
-let SearchForm = ({ handleSubmit, size, goodWith }) => {
+let SearchForm = ({ handleSubmit, sex, age, size, goodWith }) => {
   const style = {
     base: {
       float: 'left',
@@ -67,44 +67,77 @@ let SearchForm = ({ handleSubmit, size, goodWith }) => {
         name='location'
         component={SearchBar}
         validate={required}
-        isDisabled={(size && size.length === 0) ||
+        isDisabled={
+          (sex && sex.length === 0) ||
+          (age && age.length === 0) ||
+          (size && size.length === 0) ||
           (goodWith && goodWith.length === 0)
         }
       />
       <div style={style.searchOptions}>
-        <div style={style.searchOptions.block}>
+        <div
+          style={(sex && sex.length > 0) ?
+            style.searchOptions.block :
+            {
+              ...style.searchOptions.block,
+              ...style.error.border
+            }
+          }
+        >
           <h3 style={style.searchOptions.h3}>Sex</h3>
-          {['Any', 'Male', 'Female'].map((item) => (
+          {['Male', 'Female'].map((item) => (
             <span
               key={'sex' + item}
               style={style.searchOptions.span}
             >
               <Field
                 name='sex'
-                component='input'
-                type='radio'
-                value={item}
+                component={CheckboxArray}
+                itemValue={item}
               />
               {' ' + item + ' '}
             </span>
           ))}
+          <span
+            style={(sex && sex.length > 0) ?
+              { display: 'none' } :
+              style.error.text
+            }
+          >
+            Required Field!
+          </span>
         </div>
-        <div style={style.searchOptions.block}>
+        <div
+          style={(age && age.length > 0) ?
+            style.searchOptions.block :
+            {
+              ...style.searchOptions.block,
+              ...style.error.border
+            }
+          }
+        >
           <h3 style={style.searchOptions.h3}>Age</h3>
-          {['Any', 'Young', 'Adult'].map((item) => (
+          {['Baby', 'Young', 'Adult', 'Senior'].map((item) => (
             <span
               key={'age' + item}
               style={style.searchOptions.span}
             >
               <Field
                 name='age'
-                component='input'
-                type='radio'
-                value={item}
+                component={CheckboxArray}
+                itemValue={item}
               />
               {' ' + item + ' '}
             </span>
           ))}
+          <span
+            style={(age && age.length > 0) ?
+              { display: 'none' } :
+              style.error.text
+            }
+          >
+            Required Field!
+          </span>
         </div>
         <div
           style={(size && size.length > 0) ?
@@ -179,9 +212,11 @@ const selector = formValueSelector('searchForm');
 SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));
 
 SearchForm = connect((state) => {
-  const { size, goodWith } = selector(state, 'size', 'goodWith');
+  const { sex, age, size, goodWith } = selector(state, 'sex', 'age', 'size', 'goodWith');
 
   return {
+    sex,
+    age,
     size,
     goodWith
   };

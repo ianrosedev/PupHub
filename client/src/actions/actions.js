@@ -32,12 +32,18 @@ export const setMapOptions = ({ zoom, isMarkerShown }) => ({
 });
 
 // Thunk Action Creators
-export const searchDataFetch = (zipcode) => {
+export const searchDataFetch = (searchSettings) => {
   return (dispatch) => {
     dispatch(searchDataRequest());
-    fetch(`search/general/${zipcode}`)
+    fetch('/search/general', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(searchSettings)
+    })
       .then(response => response.json())
       .then(response => dispatch(searchDataResponse(JSON.parse(response))))
-      .catch(error => dispatch(searchDataError()))
+      .catch(error => dispatch(searchDataError()));
   };
 };

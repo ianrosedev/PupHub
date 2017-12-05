@@ -11,8 +11,8 @@ class SearchArea extends Component {
   };
 
   formInitialValues = {
-    sex: 'Any',
-    age: 'Any',
+    sex: ['Male', 'Female'],
+    age: ['Baby', 'Young', 'Adult', 'Senior'],
     size: ['Small', 'Medium', 'Large', 'X-Large'],
     goodWith: ['Show All']
   };
@@ -28,7 +28,13 @@ class SearchArea extends Component {
       zoom: 9,
       isMarkerShown: true
     });
-    this.props.searchDataFetch(values.locationZip);
+    this.props.searchDataFetch({
+      zipcode: values.locationZip,
+      sex: values.sex,
+      age: values.age,
+      size: values.size,
+      goodWith: values.goodWith
+    });
   };
 
   render() {
