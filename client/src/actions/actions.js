@@ -35,12 +35,9 @@ export const setMapOptions = ({ zoom, isMarkerShown }) => ({
 export const searchDataFetch = (zipcode) => {
   return (dispatch) => {
     dispatch(searchDataRequest());
-
-    return (
-      fetch(`search/general/${zipcode}`)
-        .then(response => response.json())
-        .then(response => dispatch(searchDataResponse(response)))
-        .catch(error => dispatch(searchDataError()))
-    );
+    fetch(`search/general/${zipcode}`)
+      .then(response => response.json())
+      .then(response => dispatch(searchDataResponse(JSON.parse(response))))
+      .catch(error => dispatch(searchDataError()))
   };
 };

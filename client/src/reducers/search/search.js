@@ -7,7 +7,7 @@ import {
 const initialState = {
   isFetching: false,
   isError: false,
-  searchResults: []
+  searchResults: {}
 };
 
 export default (state = initialState, action) => {
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
         isError: action.isError,
-        searchResults: action.response
+        searchResults: action.searchResults
       };
     case SEARCH_DATA_ERROR:
       return {

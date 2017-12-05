@@ -20,7 +20,9 @@
     "babel-preset-stage-0": "^6.24.1",
     "compression": "^1.7.1",
     "express": "^4.16.2",
-    "helmet": "^3.9.0"
+    "helmet": "^3.9.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
