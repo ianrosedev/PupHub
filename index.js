@@ -3,7 +3,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import compression from 'compression';
-import requestPromise from 'request-promise';
+import requestPromise from 'request-promise-native';
 import { rescueGroupsKey } from './keys';
 
 const app = express();
@@ -22,11 +22,17 @@ app.get('*', (req, res) => {
 
 app.post('/search/general', (req, res) => {
   const buildNewRequest = (searchSettings) => {
-    const { zipcode, sex, size, age, goodWith } = searchSettings;
+    const { zipcode, sex, age, goodWith, distance } = searchSettings;
 
     const request = {
       method: 'POST',
-      uri: 'https://api.rescuegroups.org/http/v2.json'
+      url: 'https://api.rescuegroups.org/http/v2.json',
+      gzip: true,
+      pool: { maxSockets: Infinity },
+      headers: {
+        'Content-Type': 'application/json',
+        'Connection': 'Keep-Alive'
+      }
     };
 
     const body = {
@@ -35,7 +41,7 @@ app.post('/search/general', (req, res) => {
       objectAction: 'publicSearch',
       search: {
         resultStart: 0,
-        resultLimit: 10,
+        resultLimit: 300,
         filters: [
           {
             fieldName: 'animalSpecies',
@@ -55,33 +61,15 @@ app.post('/search/general', (req, res) => {
           {
             fieldName: 'animalLocationDistance',
             operation: 'radius',
-            criteria: 50
-          },
-          {
-            fieldName: 'animalSex',
-            operation: 'equals',
-            criteria: sex
-          },
-          {
-            fieldName: 'animalGeneralAge',
-            operation: 'equals',
-            criteria: age
+            criteria: distance
           }
-          /* More research needed
-          {
-            fieldName: 'animalGeneralSize',
-            operation: 'equals',
-            criteria: number
-          }
-          */
         ],
         fields: [
           'animalID',
           'animalOrgID',
           'animalName',
+          'animalSex',
           'animalGeneralAge',
-          'animalSizePotential',
-          'animalSizeCurrent',
           'animalBreed',
           'animalOKWithCats',
           'animalOKWithDogs',
@@ -91,6 +79,22 @@ app.post('/search/general', (req, res) => {
         ]
       }
     };
+
+    if (sex.length < 2) {
+      body.search.filters.push({
+        fieldName: 'animalSex',
+        operation: 'equals',
+        criteria: sex
+      });
+    }
+
+    if (age.length < 4) {
+      body.search.filters.push({
+        fieldName: 'animalGeneralAge',
+        operation: 'equals',
+        criteria: age
+      });
+    }
 
     if (goodWith.find(el => el === 'Kids')) {
       body.search.filters.push({

@@ -13,8 +13,8 @@ class SearchArea extends Component {
   formInitialValues = {
     sex: ['Male', 'Female'],
     age: ['Baby', 'Young', 'Adult', 'Senior'],
-    size: ['Small', 'Medium', 'Large', 'X-Large'],
-    goodWith: ['Show All']
+    goodWith: ['Show All'],
+    distance: '25 Miles'
   };
 
   searchAreaToggle = () => (
@@ -32,8 +32,8 @@ class SearchArea extends Component {
       zipcode: values.locationZip,
       sex: values.sex,
       age: values.age,
-      size: values.size,
-      goodWith: values.goodWith
+      goodWith: values.goodWith,
+      distance: values.distance.slice(0, values.distance.indexOf(' '))
     });
   };
 

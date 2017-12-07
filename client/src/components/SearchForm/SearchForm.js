@@ -8,7 +8,7 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
-let SearchForm = ({ handleSubmit, sex, age, size, goodWith }) => {
+let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
   const style = {
     base: {
       float: 'left',
@@ -70,7 +70,6 @@ let SearchForm = ({ handleSubmit, sex, age, size, goodWith }) => {
         isDisabled={
           (sex && sex.length === 0) ||
           (age && age.length === 0) ||
-          (size && size.length === 0) ||
           (goodWith && goodWith.length === 0)
         }
       />
@@ -140,38 +139,6 @@ let SearchForm = ({ handleSubmit, sex, age, size, goodWith }) => {
           </span>
         </div>
         <div
-          style={(size && size.length > 0) ?
-            style.searchOptions.block :
-            {
-              ...style.searchOptions.block,
-              ...style.error.border
-            }
-          }
-        >
-          <h3 style={style.searchOptions.h3}>Size</h3>
-          {['Small', 'Medium', 'Large', 'X-Large'].map((item) => (
-            <span
-              key={'size' + item}
-              style={style.searchOptions.span}
-            >
-              <Field
-                name='size'
-                component={CheckboxArray}
-                itemValue={item}
-              />
-              {' ' + item + ' '}
-            </span>
-          ))}
-          <span
-            style={(size && size.length > 0) ?
-              { display: 'none' } :
-              style.error.text
-            }
-          >
-            Required Field!
-          </span>
-        </div>
-        <div
           style={(goodWith && goodWith.length > 0) ?
             style.searchOptions.block :
             {
@@ -203,6 +170,23 @@ let SearchForm = ({ handleSubmit, sex, age, size, goodWith }) => {
             Required Field!
           </span>
         </div>
+        <div style={style.searchOptions.block}>
+          <h3 style={style.searchOptions.h3}>Max Distance</h3>
+          {['10 Miles', '25 Miles', '50 Miles', '100 Miles'].map((item) => (
+            <span
+              key={'distance' + item}
+              style={style.searchOptions.span}
+            >
+              <Field
+                name='distance'
+                component='input'
+                type='radio'
+                value={item}
+              />
+              {' ' + item + ' '}
+            </span>
+          ))}
+        </div>
       </div>
     </form>
   );
@@ -212,12 +196,11 @@ const selector = formValueSelector('searchForm');
 SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));
 
 SearchForm = connect((state) => {
-  const { sex, age, size, goodWith } = selector(state, 'sex', 'age', 'size', 'goodWith');
+  const { sex, age, goodWith } = selector(state, 'sex', 'age', 'goodWith');
 
   return {
     sex,
     age,
-    size,
     goodWith
   };
 })(SearchForm);
