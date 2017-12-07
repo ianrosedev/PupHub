@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import SearchForm from '../SearchForm/SearchForm';
 import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+
+const propTypes = {
+  setMapOptions: PropTypes.func.isRequired,
+  searchDataFetch: PropTypes.func.isRequired
+};
 
 class SearchArea extends Component {
   state = {
@@ -85,5 +91,7 @@ class SearchArea extends Component {
     );
   }
 }
+
+SearchArea.propTypes = propTypes;
 
 export default Radium(SearchArea);

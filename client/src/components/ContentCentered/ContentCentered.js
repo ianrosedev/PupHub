@@ -1,5 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
+
+const propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 const ContentCentered = ({ children }) => {
   const style = {
@@ -14,5 +19,7 @@ const ContentCentered = ({ children }) => {
     </div>
   );
 };
+
+ContentCentered.propTypes = propTypes;
 
 export default Radium(ContentCentered);

@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchAreaContainer from '../../containers/SearchAreaContainer/SearchAreaContainer';
+import Search from '../Search/Search';
 
 const Body = () => (
-  <SearchAreaContainer />
+  <Search />
 );
 
 export default Body;

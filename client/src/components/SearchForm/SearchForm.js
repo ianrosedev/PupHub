@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { reduxForm, formValueSelector, Field } from 'redux-form';
+import { reduxForm, formValueSelector, Field, propTypes as reduxFormPropTypes } from 'redux-form';
 import { required } from '../../helpers/formValidation/formValidation';
 import CheckboxArray from '../CheckboxArray/CheckboxArray';
 import SearchBar from '../SearchBar/SearchBar';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
+
+const propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  ...reduxFormPropTypes
+};
 
 let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
   const style = {
@@ -191,6 +197,8 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
     </form>
   );
 };
+
+SearchForm.propTypes = propTypes;
 
 const selector = formValueSelector('searchForm');
 SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));

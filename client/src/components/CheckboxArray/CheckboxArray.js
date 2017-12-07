@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  input: PropTypes.object.isRequired,
+  itemValue: PropTypes.string.isRequired
+};
 
 const CheckboxArray = ({ input, itemValue }) => {
   const onChange = (e) => {
@@ -28,5 +34,7 @@ const CheckboxArray = ({ input, itemValue }) => {
     />
   );
 };
+
+CheckboxArray.propTypes = propTypes;
 
 export default CheckboxArray;

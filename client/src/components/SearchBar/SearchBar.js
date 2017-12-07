@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { change } from 'redux-form';
 import zips from 'zips';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+
+const propTypes = {
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
+  isDisabled: PropTypes.bool
+};
 
 class SearchBar extends Component {
   state = {
@@ -175,5 +182,7 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = propTypes;
 
 export default Radium(SearchBar);
