@@ -23,13 +23,13 @@ const Card = ({ name, thumbnail }) => {
       width: 200,
       height: 200,
       backgroundColor: 'black',
+      borderRadius: '5px 5px 0 0',
       overflow: 'hidden',
       textAlign: 'center'
     },
     img: {
       width: 'auto',
-      height: 200,
-      borderRadius: '4px 4px 0 0'
+      height: 200
     },
     name: {
       margin: 0,
