@@ -12,8 +12,9 @@ const Card = ({ name, thumbnail }) => {
   const style = {
     base: {
       width: 200,
-      height: 230,
+      height: (name.length < 20 ) ? 230 : 'auto',
       margin: 20,
+      paddingBottom: 5,
       borderRadius: 5,
       backgroundColor: colors.primaryLightest,
       boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.3)'
@@ -21,16 +22,18 @@ const Card = ({ name, thumbnail }) => {
     imgContainer: {
       width: 200,
       height: 200,
-      overflow: 'hidden'
+      backgroundColor: 'black',
+      overflow: 'hidden',
+      textAlign: 'center'
     },
     img: {
-      minWidth: 200,
-      minHeight: 200,
+      width: 'auto',
+      height: 200,
       borderRadius: '4px 4px 0 0'
     },
     name: {
       margin: 0,
-      paddingTop: 5,
+      padding: '8px 8px 0 8px',
       textAlign: 'center'
     }
   };

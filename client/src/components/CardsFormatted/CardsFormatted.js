@@ -37,7 +37,10 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
               <Card
                 key={key}
                 name={searchResults[key].animalName}
-                thumbnail={searchResults[key].animalPictures[0].urlSecureThumbnail}
+                thumbnail={(searchResults[key].animalPictures[0]) ?
+                  searchResults[key].animalPictures[0].urlSecureFullsize :
+                  require('../../media/images/no-photo-found.jpg')
+                }
               />
             ))
           ) : (
