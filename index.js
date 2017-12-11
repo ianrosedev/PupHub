@@ -41,7 +41,7 @@ app.post('/search/general', (req, res) => {
       objectAction: 'publicSearch',
       search: {
         resultStart: 0,
-        resultLimit: 300,
+        resultLimit: 20,
         filters: [
           {
             fieldName: 'animalSpecies',
