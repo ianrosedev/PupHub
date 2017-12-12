@@ -33,6 +33,7 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
                 searchResults[key].animalPictures[0].urlSecureFullsize :
                 require('../../media/images/no-photo-found.jpg')
               }
+              isAdoptionPending={searchResults[key].animalAdoptionPending}
             />
           ))}
         </div>

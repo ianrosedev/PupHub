@@ -75,7 +75,8 @@ app.post('/search/general', (req, res) => {
           'animalOKWithDogs',
           'animalOKWithKids',
           'animalLocationCoordinates',
-          'animalPictures'
+          'animalPictures',
+          'animalAdoptionPending'
         ]
       }
     };

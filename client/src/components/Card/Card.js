@@ -5,19 +5,22 @@ import colors from '../../media/styles/colors';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired
+  thumbnail: PropTypes.string.isRequired,
+  isAdoptionPending: PropTypes.string.isRequired
 };
 
-const Card = ({ name, thumbnail }) => {
+const Card = ({ name, thumbnail, isAdoptionPending }) => {
   const style = {
     base: {
+      position: 'relative',
       width: 200,
       height: (name.length < 20 ) ? 230 : 'auto',
       margin: 20,
       paddingBottom: 5,
       borderRadius: 5,
       backgroundColor: colors.primaryLightest,
-      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.3)'
+      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.3)',
+      overflow: 'hidden'
     },
     imgContainer: {
       width: 200,
@@ -35,11 +38,26 @@ const Card = ({ name, thumbnail }) => {
       margin: 0,
       padding: '8px 8px 0 8px',
       textAlign: 'center'
+    },
+    ribbon: {
+      position: 'absolute',
+      transform: 'rotate(-45deg)',
+      top: 12,
+      left: -40,
+      width: 150,
+      height: 40,
+      padding: '4px 0 0 0',
+      backgroundColor: colors.pending,
+      textAlign: 'center',
+      color: 'white'
     }
   };
 
   return (
     <div style={style.base}>
+      {(isAdoptionPending === 'Yes') &&
+        <div style={style.ribbon}>Adoption<br />Pending</div>
+      }
       <div style={style.imgContainer}>
         <img
           style={style.img}
