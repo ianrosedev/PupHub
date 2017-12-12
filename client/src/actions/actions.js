@@ -2,7 +2,8 @@ import {
   SEARCH_DATA_REQUEST,
   SEARCH_DATA_RESPONSE,
   SEARCH_DATA_ERROR,
-  SET_MAP_OPTIONS
+  SET_MAP_OPTIONS,
+  TOGGLE_SEARCH_AREA
 } from '../constants/constants';
 
 // Action Creators
@@ -29,6 +30,10 @@ export const setMapOptions = ({ zoom, isMarkerShown }) => ({
   type: SET_MAP_OPTIONS,
   zoom,
   isMarkerShown
+});
+
+export const toggleSearchArea = () => ({
+  type: TOGGLE_SEARCH_AREA
 });
 
 // Thunk Action Creators

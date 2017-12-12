@@ -1,10 +1,12 @@
 import {
   SEARCH_DATA_REQUEST,
   SEARCH_DATA_RESPONSE,
-  SEARCH_DATA_ERROR
+  SEARCH_DATA_ERROR,
+  TOGGLE_SEARCH_AREA
 } from '../../constants/constants';
 
 const initialState = {
+  isOpen: true,
   isFetching: false,
   isError: false,
   searchResults: {}
@@ -15,6 +17,7 @@ export default (state = initialState, action) => {
     case SEARCH_DATA_REQUEST:
       return {
         ...state,
+        isOpen: false,
         isFetching: action.isFetching,
         isError: action.isError
       };
@@ -30,6 +33,11 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
         isError: action.isError
+      };
+    case TOGGLE_SEARCH_AREA:
+      return {
+        ...state,
+        isOpen: !state.isOpen
       };
     default:
       return state;

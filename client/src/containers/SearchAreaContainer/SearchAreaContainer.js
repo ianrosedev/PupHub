@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
-import { searchDataFetch, setMapOptions } from '../../actions/actions';
+import { toggleSearchArea, searchDataFetch, setMapOptions } from '../../actions/actions';
 import SearchArea from '../../components/SearchArea/SearchArea';
 
-const mapStateToProps = ({ search }) => search;
+const mapStateToProps = ({ search }) => ({
+  isOpen: search.isOpen
+});
 
 const mapDispatchToProps = {
+  toggleSearchArea,
   searchDataFetch,
   setMapOptions
 };

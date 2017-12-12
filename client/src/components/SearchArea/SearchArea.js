@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,34 +7,55 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
 const propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggleSearchArea: PropTypes.func.isRequired,
   setMapOptions: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
 };
 
-class SearchArea extends Component {
-  state = {
-    isOpen: true
+const SearchArea = ({
+  isOpen,
+  toggleSearchArea,
+  setMapOptions,
+  searchDataFetch
+}) => {
+  const style = {
+    base: {
+      backgroundColor: colors.primaryLightest
+    },
+    content: {
+      display: isOpen ? 'block' : 'none'
+    },
+    toggleControl: {
+      width: '100vw',
+      height: 35,
+      backgroundColor: colors.primaryDark,
+      borderTop: `1px solid ${colors.primaryLight}`,
+      borderBottom: `1px solid ${colors.primaryLight}`,
+      icons: {
+        float: 'right',
+        marginRight: '6vw',
+        ':hover': {
+          cursor: 'pointer'
+        }
+      }
+    }
   };
 
-  formInitialValues = {
+  const formInitialValues = {
     sex: ['Male', 'Female'],
     age: ['Baby', 'Young', 'Adult', 'Senior'],
     goodWith: ['Show All'],
     distance: '25 Miles'
   };
 
-  searchAreaToggle = () => (
-    this.setState((prevState) => ({
-      isOpen: !prevState.isOpen
-    }))
-  );
-
-  onSubmit = (values) => {
-    this.props.setMapOptions({
+  const onSubmit = (values) => {
+    setMapOptions({
       zoom: 9,
       isMarkerShown: true
     });
-    this.props.searchDataFetch({
+
+    searchDataFetch({
       zipcode: values.locationZip,
       sex: values.sex,
       age: values.age,
@@ -43,54 +64,29 @@ class SearchArea extends Component {
     });
   };
 
-  render() {
-    const style = {
-      base: {
-        backgroundColor: colors.primaryLightest
-      },
-      content: {
-        display: this.state.isOpen ? 'block' : 'none'
-      },
-      toggleControl: {
-        width: '100vw',
-        height: 35,
-        backgroundColor: colors.primaryDark,
-        borderTop: `1px solid ${colors.primaryLight}`,
-        borderBottom: `1px solid ${colors.primaryLight}`,
-        icons: {
-          float: 'right',
-          marginRight: '6vw',
-          ':hover': {
-            cursor: 'pointer'
-          }
-        }
-      }
-    };
-
-    return (
-      <div style={style.base}>
-        <div style={style.content}>
-          <ContentCentered>
-            <SearchForm
-              onSubmit={this.onSubmit}
-              initialValues={this.formInitialValues}
-            />
-            <MapContainer />
-          </ContentCentered>
-        </div>
-        <div style={style.toggleControl}>
-          <span style={style.toggleControl.icons}>
-            <i
-              className={`fa fa-caret-${this.state.isOpen ? 'up' : 'down'} fa-2x aria-hidden=true`}
-              onClick={this.searchAreaToggle}
-            >
-            </i>
-          </span>
-        </div>
+  return (
+    <div style={style.base}>
+      <div style={style.content}>
+        <ContentCentered>
+          <SearchForm
+            onSubmit={onSubmit}
+            initialValues={formInitialValues}
+          />
+          <MapContainer />
+        </ContentCentered>
       </div>
-    );
-  }
-}
+      <div style={style.toggleControl}>
+        <span style={style.toggleControl.icons}>
+          <i
+            className={`fa fa-caret-${isOpen ? 'up' : 'down'} fa-2x aria-hidden=true`}
+            onClick={toggleSearchArea}
+          >
+          </i>
+        </span>
+      </div>
+    </div>
+  );
+};
 
 SearchArea.propTypes = propTypes;
 
