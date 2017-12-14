@@ -10,6 +10,7 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggleSearchArea: PropTypes.func.isRequired,
   setMapOptions: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
 };
 
@@ -17,6 +18,7 @@ const SearchArea = ({
   isOpen,
   toggleSearchArea,
   setMapOptions,
+  setActivePage,
   searchDataFetch
 }) => {
   const style = {
@@ -54,14 +56,8 @@ const SearchArea = ({
       zoom: 9,
       isMarkerShown: true
     });
-
-    searchDataFetch({
-      zipcode: values.locationZip,
-      sex: values.sex,
-      age: values.age,
-      goodWith: values.goodWith,
-      distance: values.distance.slice(0, values.distance.indexOf(' '))
-    });
+    setActivePage(1);
+    searchDataFetch();
   };
 
   return (

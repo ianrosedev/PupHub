@@ -22,7 +22,7 @@ app.get('*', (req, res) => {
 
 app.post('/search/general', (req, res) => {
   const buildNewRequest = (searchSettings) => {
-    const { zipcode, sex, age, goodWith, distance } = searchSettings;
+    const { activePage, zipcode, sex, age, goodWith, distance } = searchSettings;
 
     const request = {
       method: 'POST',
@@ -40,7 +40,9 @@ app.post('/search/general', (req, res) => {
       objectType: 'animals',
       objectAction: 'publicSearch',
       search: {
-        resultStart: 0,
+        // (activePage - 1) for 0 based index of search
+        // * 20 for items per page
+        resultStart: (activePage - 1) * 20,
         resultLimit: 20,
         filters: [
           {
@@ -68,12 +70,6 @@ app.post('/search/general', (req, res) => {
           'animalID',
           'animalOrgID',
           'animalName',
-          'animalSex',
-          'animalGeneralAge',
-          'animalBreed',
-          'animalOKWithCats',
-          'animalOKWithDogs',
-          'animalOKWithKids',
           'animalLocationCoordinates',
           'animalPictures',
           'animalAdoptionPending'

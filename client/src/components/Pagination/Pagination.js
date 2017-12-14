@@ -6,11 +6,12 @@ import Radium from 'radium';
 
 const propTypes = {
   totalItemsCount: PropTypes.number.isRequired,
-  itemsCountPerPage: PropTypes.number,
-  activePage: PropTypes.number,
-  pageRangeDisplayed: PropTypes.number,
+  itemsCountPerPage: PropTypes.number.isRequired,
+  activePage: PropTypes.number.isRequired,
+  pageRangeDisplayed: PropTypes.number.isRequired,
   hideDisabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired
+  setActivePage: PropTypes.func.isRequired,
+  searchDataFetch: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -25,7 +26,8 @@ const Pagination = ({
   activePage,
   pageRangeDisplayed,
   hideDisabled,
-  onClick
+  setActivePage,
+  searchDataFetch
 }) => {
   const style = {
     base: {
@@ -48,7 +50,8 @@ const Pagination = ({
           pageNumber={i}
           pageText={String(i)}
           isActive={(i === activePage) ? true : false}
-          onClick={onClick}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
         />
       );
     }
@@ -58,9 +61,10 @@ const Pagination = ({
         <PaginationListItem
           key={'prev' + paginationInfo.previous_page}
           pageNumber={paginationInfo.previous_page}
-          pageText={<i className='fa fa-angle-left'></i>}
+          pageText='⟨'
           isDisabled={!paginationInfo.has_previous_page}
-          onClick={onClick}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
         />
       );
     }
@@ -68,12 +72,13 @@ const Pagination = ({
     if (!(hideDisabled && !paginationInfo.has_previous_page)) {
       pages.unshift(
         <PaginationListItem
-          key={'first'}
+          key='first'
           pageNumber={1}
-          pageText={'First'}
+          pageText='First'
           isDisabled={!paginationInfo.has_previous_page}
           isFirstElement
-          onClick={onClick}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
         />
       );
     }
@@ -83,9 +88,10 @@ const Pagination = ({
         <PaginationListItem
           key={'next' + paginationInfo.next_page}
           pageNumber={paginationInfo.next_page}
-          pageText={<i className='fa fa-angle-right'></i>}
+          pageText='⟩'
           isDisabled={!paginationInfo.has_next_page}
-          onClick={onClick}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
         />
       );
     }
@@ -93,12 +99,13 @@ const Pagination = ({
     if (!(hideDisabled && !paginationInfo.has_next_page)) {
       pages.push(
         <PaginationListItem
-          key={'last'}
+          key='last'
           pageNumber={paginationInfo.total_pages}
-          pageText={'Last'}
+          pageText='Last'
           isDisabled={paginationInfo.current_page === paginationInfo.total_pages}
           isLastElement
-          onClick={onClick}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
         />
       );
     }

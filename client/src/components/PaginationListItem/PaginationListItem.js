@@ -13,7 +13,8 @@ const propTypes = {
   isLastElement: PropTypes.bool,
   isActive: PropTypes.bool.isRequired,
   isDisabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  searchDataFetch: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -28,7 +29,8 @@ const PaginationListItem = ({
   isLastElement,
   isActive,
   isDisabled,
-  onClick
+  setActivePage,
+  searchDataFetch
 }) => {
   const style = {
     base: {
@@ -69,8 +71,8 @@ const PaginationListItem = ({
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    onClick(pageNumber);
+    setActivePage(pageNumber);
+    searchDataFetch();
   };
 
   const buildStyle = () => {

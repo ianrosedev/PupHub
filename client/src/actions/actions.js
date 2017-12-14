@@ -3,6 +3,7 @@ import {
   SEARCH_DATA_RESPONSE,
   SEARCH_DATA_ERROR,
   SET_MAP_OPTIONS,
+  SET_ACTIVE_PAGE,
   TOGGLE_SEARCH_AREA
 } from '../constants/constants';
 
@@ -32,14 +33,33 @@ export const setMapOptions = ({ zoom, isMarkerShown }) => ({
   isMarkerShown
 });
 
+export const setActivePage = (activePage) => ({
+  type: SET_ACTIVE_PAGE,
+  activePage
+});
+
 export const toggleSearchArea = () => ({
   type: TOGGLE_SEARCH_AREA
 });
 
 // Thunk Action Creators
-export const searchDataFetch = (searchSettings) => {
-  return (dispatch) => {
+export const searchDataFetch = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const activePage = state.pagination.activePage;
+    const formValues = state.form.searchForm.values;
+
+    const searchSettings = {
+      activePage,
+      zipcode: formValues.locationZip,
+      sex: formValues.sex,
+      age: formValues.age,
+      goodWith: formValues.goodWith,
+      distance: formValues.distance.slice(0, formValues.distance.indexOf(' '))
+    };
+
     dispatch(searchDataRequest());
+
     fetch('/search/general', {
       method: 'POST',
       headers: new Headers({

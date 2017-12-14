@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import Card from '../Card/Card';
-import Pagination from '../Pagination/Pagination';
+import PaginationContainer from '../../containers/PaginationContainer/PaginationContainer';
 import Spinner from '../Spinner/Spinner';
 import Radium from 'radium';
 
@@ -37,12 +37,7 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
             />
           ))}
         </div>
-        <Pagination
-          totalItemsCount={300}
-          itemsCountPerPage={20}
-          activePage={1}
-          onClick={(pageNumber) => console.log(pageNumber)}
-        />
+        <PaginationContainer />
       </ContentCentered>
     );
   } else if (isFetching) {
