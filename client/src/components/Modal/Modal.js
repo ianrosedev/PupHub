@@ -1,16 +1,18 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
+import { Carousel } from 'react-responsive-carousel';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const propTypes = {
-  name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  objKey: PropTypes.string.isRequired,
+  searchResults: PropTypes.object.isRequired,
   closePortal: PropTypes.func.isRequired
 };
 
-const Modal = ({ name, img, closePortal }) => {
+const Modal = ({ objKey, searchResults, closePortal }) => {
   const style = {
     background: {
       position: 'fixed',
@@ -21,13 +23,13 @@ const Modal = ({ name, img, closePortal }) => {
       justifyContent: 'center',
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)'
+      backgroundColor: 'rgba(0, 0, 0, 0.8)'
     },
     base: {
       width: '80%',
       height: '90%',
       backgroundColor: 'white',
-      borderRadius: 10
+      borderRadius: 8
     },
     closeIcon: {
       float: 'right',
@@ -36,23 +38,27 @@ const Modal = ({ name, img, closePortal }) => {
       cursor: 'pointer'
     },
     imgContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      backgroundColor: 'black',
-      width: '60%',
-      height: '50%',
+      width: 'auto',
+      height: '40vh',
+      margin: '10px auto 35px auto'
+    },
+    carousel: {
+      width: 570,
       margin: '0 auto',
-      border: '1px solid black',
-      borderRadius: 5
+      borderRadius: 5,
+      overflow: 'hidden'
     },
     img: {
-      width: 'auto',
-      height: 300
+      height: 'inherit',
+      width: 'inherit'
     },
     h2: {
       textAlign: 'center'
     }
   };
+
+  const name = searchResults[objKey].animalName;
+  const imgArray = searchResults[objKey].animalPictures;
 
   return (
     <div style={style.background}>
@@ -64,12 +70,27 @@ const Modal = ({ name, img, closePortal }) => {
         >
         </i>
         <ContentCentered>
-          <div style={style.imgContainer}>
-            <img
-              style={style.img}
-              src={img}
-              alt={name}
-            />
+          <div style={style.carousel}>
+            <Carousel
+              showThumbs={false}
+              showStatus={false}
+              autoPlay={true}
+              interval={6000}
+              infiniteLoop={true}
+            >
+              {imgArray.map((img) => (
+                <div
+                  key={searchResults[objKey].animalID}
+                  style={style.imgContainer}
+                >
+                  <img
+                    style={style.img}
+                    src={img.urlSecureFullsize}
+                    alt={name}
+                  />
+                </div>
+              ))}
+            </Carousel>
           </div>
           <h2 style={style.h2}>{name}</h2>
         </ContentCentered>

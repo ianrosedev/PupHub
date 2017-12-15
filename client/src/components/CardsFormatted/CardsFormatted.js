@@ -46,11 +46,8 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
                 />,
                 portal(
                   <Modal
-                    name={searchResults[key].animalName}
-                    img={(searchResults[key].animalPictures[0]) ?
-                      searchResults[key].animalPictures[0].urlSecureFullsize :
-                      require('../../media/images/no-photo-found.jpg')
-                    }
+                    objKey={key}
+                    searchResults={searchResults}
                     closePortal={closePortal}
                   />
                 )
