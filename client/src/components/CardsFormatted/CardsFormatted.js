@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import Card from '../Card/Card';
 import PaginationContainer from '../../containers/PaginationContainer/PaginationContainer';
+import { PortalWithState } from 'react-portal';
+import Modal from '../Modal/Modal';
 import Spinner from '../Spinner/Spinner';
 import Radium from 'radium';
 
@@ -26,15 +28,34 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
       <ContentCentered>
         <div style={style.base}>
           {Object.keys(searchResults).map((key) => (
-            <Card
-              key={key}
-              name={searchResults[key].animalName}
-              thumbnail={(searchResults[key].animalPictures[0]) ?
-                searchResults[key].animalPictures[0].urlSecureFullsize :
-                require('../../media/images/no-photo-found.jpg')
-              }
-              isAdoptionPending={searchResults[key].animalAdoptionPending}
-            />
+            <PortalWithState
+              key={'portal' + key}
+              node={document.getElementById('portal')}
+              closeOnEsc
+            >
+              {({ openPortal, closePortal, portal }) => [
+                <Card
+                  key={'card' + key}
+                  name={searchResults[key].animalName}
+                  img={(searchResults[key].animalPictures[0]) ?
+                    searchResults[key].animalPictures[0].urlSecureFullsize :
+                    require('../../media/images/no-photo-found.jpg')
+                  }
+                  isAdoptionPending={searchResults[key].animalAdoptionPending}
+                  onClick={openPortal}
+                />,
+                portal(
+                  <Modal
+                    name={searchResults[key].animalName}
+                    img={(searchResults[key].animalPictures[0]) ?
+                      searchResults[key].animalPictures[0].urlSecureFullsize :
+                      require('../../media/images/no-photo-found.jpg')
+                    }
+                    closePortal={closePortal}
+                  />
+                )
+              ]}
+            </PortalWithState>
           ))}
         </div>
         <PaginationContainer />

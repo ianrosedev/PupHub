@@ -5,11 +5,12 @@ import colors from '../../media/styles/colors';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  isAdoptionPending: PropTypes.string.isRequired
+  img: PropTypes.string.isRequired,
+  isAdoptionPending: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
-const Card = ({ name, thumbnail, isAdoptionPending }) => {
+const Card = ({ name, img, isAdoptionPending, onClick }) => {
   const style = {
     base: {
       position: 'relative',
@@ -20,7 +21,8 @@ const Card = ({ name, thumbnail, isAdoptionPending }) => {
       borderRadius: 5,
       backgroundColor: colors.primaryLightest,
       boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.3)',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      cursor: 'pointer'
     },
     imgContainer: {
       width: 200,
@@ -54,14 +56,17 @@ const Card = ({ name, thumbnail, isAdoptionPending }) => {
   };
 
   return (
-    <div style={style.base}>
+    <div
+      style={style.base}
+      onClick={onClick}
+    >
       {(isAdoptionPending === 'Yes') &&
         <div style={style.ribbon}>Adoption<br />Pending</div>
       }
       <div style={style.imgContainer}>
         <img
           style={style.img}
-          src={thumbnail}
+          src={img}
           alt={name}
         />
       </div>
