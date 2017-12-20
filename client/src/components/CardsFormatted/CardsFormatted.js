@@ -33,25 +33,28 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
               node={document.getElementById('portal')}
               closeOnEsc
             >
-              {({ openPortal, closePortal, portal }) => [
-                <Card
-                  key={'card' + key}
-                  name={searchResults[key].animalName}
-                  img={(searchResults[key].animalPictures[0]) ?
-                    searchResults[key].animalPictures[0].urlSecureFullsize :
-                    require('../../media/images/no-photo-found.jpg')
-                  }
-                  isAdoptionPending={searchResults[key].animalAdoptionPending}
-                  onClick={openPortal}
-                />,
-                portal(
-                  <Modal
-                    objKey={key}
-                    searchResults={searchResults}
-                    closePortal={closePortal}
-                  />
-                )
-              ]}
+              {({ openPortal, closePortal, portal }) => {
+                const individualResult = searchResults[key];
+
+                return [
+                  <Card
+                    key={'card' + key}
+                    name={individualResult.animalName}
+                    img={(individualResult.animalPictures[0]) ?
+                      individualResult.animalPictures[0].urlSecureFullsize :
+                      require('../../media/images/no-photo-found.jpg')
+                    }
+                    isAdoptionPending={individualResult.animalAdoptionPending}
+                    onClick={openPortal}
+                  />,
+                  portal(
+                    <Modal
+                      individualResult={individualResult}
+                      closePortal={closePortal}
+                    />
+                  )
+                ];
+              }}
             </PortalWithState>
           ))}
         </div>

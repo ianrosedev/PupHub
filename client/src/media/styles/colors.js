@@ -7,7 +7,8 @@ const colors = {
   secondary: '#03a9f4',
   secondaryDark: '#007ac1',
   warning: '#f00',
-  pending: '#e43'
+  pending: '#e43',
+  lightGray: '#e3e3e3'
 };
 
 export default colors;

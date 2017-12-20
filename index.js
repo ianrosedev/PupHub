@@ -68,10 +68,16 @@ app.post('/search/general', (req, res) => {
         ],
         fields: [
           'animalID',
-          'animalOrgID',
-          'animalName',
           'animalLocationCoordinates',
+          'animalName',
+          'animalSex',
+          'animalGeneralAge',
+          'animalBreed',
+        	'animalOKWithCats',
+        	'animalOKWithDogs',
+        	'animalOKWithKids',
           'animalPictures',
+          'animalDescription',
           'animalAdoptionPending'
         ]
       }
