@@ -5,8 +5,10 @@ import colors from '../../media/styles/colors';
 const Spinner = () => {
   const style = {
     base: {
-      marginTop: '15vh',
-      textAlign: 'center'
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 'calc(100vh - 215px)'
     },
     i: {
       color: colors.secondaryDark
