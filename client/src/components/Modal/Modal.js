@@ -66,6 +66,7 @@ const Modal = ({ individualResult, closePortal }) => {
     h1: {
       margin: '20px 0 0 0',
       paddingBottom: 5,
+      fontFamily: 'Roboto',
       textAlign: 'center'
     },
     listContainer: {
