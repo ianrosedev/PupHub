@@ -55,7 +55,7 @@ export const searchDataFetch = () => {
       sex: formValues.sex,
       age: formValues.age,
       goodWith: formValues.goodWith,
-      distance: formValues.distance.slice(0, formValues.distance.indexOf(' '))
+      distance: formValues.distance
     };
 
     dispatch(searchDataRequest());

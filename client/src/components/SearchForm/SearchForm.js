@@ -178,7 +178,7 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
         </div>
         <div style={style.searchOptions.block}>
           <h3 style={style.searchOptions.h3}>Max Distance</h3>
-          {['10 Miles', '25 Miles', '50 Miles', '100 Miles'].map((item) => (
+          {['10', '25', '50', '100'].map((item) => (
             <span
               key={'distance' + item}
               style={style.searchOptions.span}
@@ -189,7 +189,7 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
                 type='radio'
                 value={item}
               />
-              {' ' + item + ' '}
+              {' ' + item + ' Miles '}
             </span>
           ))}
         </div>

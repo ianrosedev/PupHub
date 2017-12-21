@@ -48,7 +48,7 @@ const SearchArea = ({
     sex: ['Male', 'Female'],
     age: ['Baby', 'Young', 'Adult', 'Senior'],
     goodWith: ['Show All'],
-    distance: '25 Miles'
+    distance: '25'
   };
 
   const onSubmit = (values) => {

@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 import { setMapOptions } from '../../actions/actions';
 import Map from '../../components/Map/Map';
 
-const mapStateToProps = ({ map, form }) => ({
+const mapStateToProps = ({ map, form, search }) => ({
   ...map,
-  locationCoords: form.searchForm.values.locationCoords
+  locationCoords: form.searchForm.values.locationCoords,
+  distance: form.searchForm.values.distance,
+  searchResults: search.searchResults.data
 });
 
 const mapDispatchToProps = {

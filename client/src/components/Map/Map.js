@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, Circle } from 'react-google-maps';
+import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import Radium from 'radium';
 
 const propTypes = {
@@ -11,6 +12,8 @@ const propTypes = {
   zoom: PropTypes.number.isRequired,
   isMarkerShown: PropTypes.bool.isRequired,
   locationCoords: PropTypes.object,
+  distance: PropTypes.string.isRequired,
+  searchResults: PropTypes.object
 };
 
 const defaultProps = {
@@ -23,7 +26,9 @@ const Map = withGoogleMap(({
   defaultCenter,
   zoom,
   isMarkerShown,
-  locationCoords
+  locationCoords,
+  distance,
+  searchResults
 }) => (
   <GoogleMap
     center={(!isMarkerShown) ?
@@ -33,7 +38,44 @@ const Map = withGoogleMap(({
     zoom={zoom}
   >
     {isMarkerShown &&
+      <Circle
+        center={locationCoords}
+        // Google Maps requires meters
+        // miles * 1609.344 = meters
+        radius={distance * 1609.344}
+        defaultOptions={{
+          fillOpacity: 0.1,
+          strokeWeight: 1,
+          clickable: false,
+          editable: false
+        }}
+      />
+    }
+    {isMarkerShown &&
       <Marker position={locationCoords} />
+    }
+    {isMarkerShown && searchResults &&
+      <MarkerClusterer
+        //onClick={props.onMarkerClustererClick}
+        averageCenter
+        enableRetinaIcons
+        gridSize={60}
+      >
+        {Object.keys(searchResults).map((key) => {
+          const individualResult = searchResults[key];
+          const latLng = individualResult.animalLocationCoordinates.split(',');
+
+          return (
+            <Marker
+              key={individualResult.animalID}
+              position={{
+                lat: Number(latLng[0]),
+                lng: Number(latLng[1])
+              }}
+            />
+          );
+        })}
+      </MarkerClusterer>
     }
   </GoogleMap>
 ));
