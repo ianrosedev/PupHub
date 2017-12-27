@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
     case SEARCH_DATA_REQUEST:
       return {
         ...state,
-        isOpen: false,
         isFetching: action.isFetching,
         isError: action.isError
       };

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker, Circle } from 'react-google-maps';
-import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
+import MarkerWithInfoWindow from '../MarkerWithInfoWindow/MarkerWithInfoWindow';
 import Radium from 'radium';
+import colors from '../../media/styles/colors';
 
 const propTypes = {
   loadingElement: PropTypes.object.isRequired,
@@ -45,37 +46,36 @@ const Map = withGoogleMap(({
         radius={distance * 1609.344}
         defaultOptions={{
           fillOpacity: 0.1,
-          strokeWeight: 1,
+          strokeWeight: 0.5,
+          strokeColor: colors.pending,
           clickable: false,
           editable: false
         }}
       />
     }
     {isMarkerShown &&
-      <Marker position={locationCoords} />
+      <Marker
+        position={locationCoords}
+        defaultIcon={require('../../media/images/map-icon-house.png')}
+      />
     }
     {isMarkerShown && searchResults &&
-      <MarkerClusterer
-        //onClick={props.onMarkerClustererClick}
-        averageCenter
-        enableRetinaIcons
-        gridSize={60}
-      >
-        {Object.keys(searchResults).map((key) => {
-          const individualResult = searchResults[key];
-          const latLng = individualResult.animalLocationCoordinates.split(',');
+      Object.keys(searchResults).map((key) => {
+        const individualResult = searchResults[key];
+        const latLngArray = individualResult.animalLocationCoordinates.split(',');
 
-          return (
-            <Marker
-              key={individualResult.animalID}
-              position={{
-                lat: Number(latLng[0]),
-                lng: Number(latLng[1])
-              }}
-            />
-          );
-        })}
-      </MarkerClusterer>
+        return (
+          <MarkerWithInfoWindow
+            key={individualResult.animalID}
+            data={individualResult}
+            position={{
+              lat: Number(latLngArray[0]),
+              lng: Number(latLngArray[1])
+            }}
+            defaultIcon={require('../../media/images/map-icon-paw.png')}
+          />
+        );
+      })
     }
   </GoogleMap>
 ));
