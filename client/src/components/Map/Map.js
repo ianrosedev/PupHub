@@ -30,55 +30,72 @@ const Map = withGoogleMap(({
   locationCoords,
   distance,
   searchResults
-}) => (
-  <GoogleMap
-    center={(!isMarkerShown) ?
-      defaultCenter :
-      locationCoords
-    }
-    zoom={zoom}
-  >
-    {isMarkerShown &&
-      <Circle
-        center={locationCoords}
-        // Google Maps requires meters
-        // miles * 1609.344 = meters
-        radius={distance * 1609.344}
-        defaultOptions={{
-          fillOpacity: 0.1,
-          strokeWeight: 0.5,
-          strokeColor: colors.pending,
-          clickable: false,
-          editable: false
-        }}
-      />
-    }
-    {isMarkerShown &&
-      <Marker
-        position={locationCoords}
-        defaultIcon={require('../../media/images/map-icon-house.png')}
-      />
-    }
-    {isMarkerShown && searchResults &&
-      Object.keys(searchResults).map((key) => {
-        const individualResult = searchResults[key];
+}) => {
+  const parseSearchResults = () => {
+    const arrayOfMarkers = [];
+
+    Object.keys(searchResults).forEach((key) => {
+      const individualResult = searchResults[key];
+      const matchedElementIndex = arrayOfMarkers.findIndex(element => {
+        const latLngElement = element[0].animalLocationCoordinates.split(',');
         const latLngArray = individualResult.animalLocationCoordinates.split(',');
 
         return (
-          <MarkerWithInfoWindow
-            key={individualResult.animalID}
-            data={individualResult}
-            position={{
-              lat: Number(latLngArray[0]),
-              lng: Number(latLngArray[1])
-            }}
-            defaultIcon={require('../../media/images/map-icon-paw.png')}
-          />
+          latLngElement[0] === latLngArray[0] && latLngElement[1] === latLngArray[1]
         );
-      })
-    }
-  </GoogleMap>
-));
+      });
+
+      if (matchedElementIndex >= 0) {
+  	    arrayOfMarkers[matchedElementIndex].push(individualResult)
+      } else {
+  	    arrayOfMarkers.push([individualResult])
+      }
+    })
+
+    return (
+      arrayOfMarkers.map((element, i) => (
+        <MarkerWithInfoWindow
+          key={'marker' + i}
+          data={element}
+          defaultIcon={require('../../media/images/map-icon-paw.png')}
+        />
+      ))
+    );
+  };
+
+  return (
+    <GoogleMap
+      center={(!isMarkerShown) ?
+        defaultCenter :
+        locationCoords
+      }
+      zoom={zoom}
+    >
+      {isMarkerShown &&
+        <Circle
+          center={locationCoords}
+          // Google Maps requires meters
+          // miles * 1609.344 = meters
+          radius={distance * 1609.344}
+          defaultOptions={{
+            fillOpacity: 0.1,
+            strokeWeight: 0.5,
+            strokeColor: colors.pending,
+            clickable: false,
+            editable: false
+          }}
+        />
+      }
+      {isMarkerShown &&
+        <Marker
+          position={locationCoords}
+          defaultIcon={require('../../media/images/map-icon-house.png')}
+        />
+      }
+      {isMarkerShown && searchResults && parseSearchResults()}
+    </GoogleMap>
+  );
+});
 
 Map.propTypes = propTypes;
 Map.defaultProps = defaultProps;
