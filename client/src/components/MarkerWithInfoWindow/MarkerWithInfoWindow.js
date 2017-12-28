@@ -8,7 +8,7 @@ import colors from '../../media/styles/colors';
 
 const propTypes = {
   data: PropTypes.array.isRequired,
-  defaultIcon: PropTypes.string.isRequired
+  label: PropTypes.object.isRequired
 };
 
 class MarkerWithInfoWindow extends Component {
@@ -52,7 +52,7 @@ class MarkerWithInfoWindow extends Component {
       }
     };
 
-    const { data, defaultIcon } = this.props;
+    const { data, label } = this.props;
     const latLngArray = data[0].animalLocationCoordinates.split(',');
 
     return (
@@ -61,7 +61,7 @@ class MarkerWithInfoWindow extends Component {
           lat: Number(latLngArray[0]),
           lng: Number(latLngArray[1])
         }}
-        defaultIcon={defaultIcon}
+        label={label}
         onClick={this.toggleInfoWindow}
       >
         {this.state.isInfoWindowOpen &&

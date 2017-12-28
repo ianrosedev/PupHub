@@ -57,7 +57,10 @@ const Map = withGoogleMap(({
         <MarkerWithInfoWindow
           key={'marker' + i}
           data={element}
-          defaultIcon={require('../../media/images/map-icon-paw.png')}
+          label={{
+            text: String(element.length),
+            color: 'white'
+          }}
         />
       ))
     );
