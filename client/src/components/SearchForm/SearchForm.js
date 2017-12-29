@@ -11,10 +11,22 @@ import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  setMapOptions: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  searchDataFetch: PropTypes.func.isRequired,
   ...reduxFormPropTypes
 };
 
-let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
+let SearchForm = ({
+  handleSubmit,
+  sex,
+  age,
+  goodWith,
+  distance,
+  setMapOptions,
+  setActivePage,
+  searchDataFetch
+}) => {
   const style = {
     base: {
       float: 'left',
@@ -78,6 +90,9 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
           (age && age.length === 0) ||
           (goodWith && goodWith.length === 0)
         }
+        setMapOptions={setMapOptions}
+        setActivePage={setActivePage}
+        searchDataFetch={searchDataFetch}
       />
       <div style={style.searchOptions}>
         <div
@@ -88,6 +103,7 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
               ...style.error.border
             }
           }
+          onChange={searchDataFetch}
         >
           <h3 style={style.searchOptions.h3}>Sex</h3>
           {['Male', 'Female'].map((item) => (
@@ -120,6 +136,7 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
               ...style.error.border
             }
           }
+          onChange={searchDataFetch}
         >
           <h3 style={style.searchOptions.h3}>Age</h3>
           {['Baby', 'Young', 'Adult', 'Senior'].map((item) => (
@@ -152,6 +169,7 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
               ...style.error.border
             }
           }
+          onChange={searchDataFetch}
         >
           <h3 style={style.searchOptions.h3}>Good With</h3>
           {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
@@ -176,7 +194,10 @@ let SearchForm = ({ handleSubmit, sex, age, goodWith, distance }) => {
             Required Field!
           </span>
         </div>
-        <div style={style.searchOptions.block}>
+        <div
+          style={style.searchOptions.block}
+          onChange={searchDataFetch}
+        >
           <h3 style={style.searchOptions.h3}>Max Distance</h3>
           {['10', '25', '50', '100'].map((item) => (
             <span

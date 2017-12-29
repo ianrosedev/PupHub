@@ -9,7 +9,10 @@ import colors from '../../media/styles/colors';
 const propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  isDisabled: PropTypes.bool
+  isDisabled: PropTypes.bool,
+  setMapOptions: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  searchDataFetch: PropTypes.func.isRequired
 };
 
 class SearchBar extends Component {
@@ -62,8 +65,9 @@ class SearchBar extends Component {
     }
   };
 
-  getGeocode = (location) => {
+  getGeocodeAndFetch = (location) => {
     const dispatch = this.props.meta.dispatch;
+    const { setMapOptions, setActivePage, searchDataFetch } = this.props;
 
     this.geocoder.geocode({
       address: location,
@@ -88,6 +92,14 @@ class SearchBar extends Component {
           lat,
           lng
         ).zip));
+
+        // Fetch data
+        setMapOptions({
+          zoom: 9,
+          isMarkerShown: true
+        });
+        setActivePage(1);
+        searchDataFetch();
       } else {
         console.log(status);
       }
@@ -109,7 +121,7 @@ class SearchBar extends Component {
       },
         (results, status) => {
           if (status === 'OK') {
-            this.getGeocode(results[0].formatted_address);
+            this.getGeocodeAndFetch(results[0].formatted_address);
             this.setState({
               isFindingPosition: false
             });
@@ -152,7 +164,7 @@ class SearchBar extends Component {
           >
           </i>
           <StandaloneSearchBox
-            onPlacesChanged={() => this.getGeocode(this.textInput.value)}
+            onPlacesChanged={() => this.getGeocodeAndFetch(this.textInput.value)}
           >
             <input
               {...input}
@@ -163,12 +175,13 @@ class SearchBar extends Component {
                 'Please enter a location...'
               }
               ref={input => this.textInput = input}
+              disabled={this.state.isFindingPosition ? true : false}
             />
           </StandaloneSearchBox>
           <button
             style={this.style.base.button}
             type='submit'
-            disabled={isDisabled}
+            disabled={isDisabled || this.state.isFindingPosition}
           >
             Submit
           </button>

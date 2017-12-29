@@ -67,6 +67,9 @@ const SearchArea = ({
           <SearchForm
             onSubmit={onSubmit}
             initialValues={formInitialValues}
+            setMapOptions={setMapOptions}
+            setActivePage={setActivePage}
+            searchDataFetch={searchDataFetch}
           />
           <MapContainer />
         </ContentCentered>
