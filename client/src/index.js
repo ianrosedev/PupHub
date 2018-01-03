@@ -10,13 +10,13 @@ import 'normalize.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <StyleRoot>
+  <StyleRoot>
+    <Provider store={store}>
+      <Router>
         <App />
-      </StyleRoot>
-    </Router>
-  </Provider>,
+      </Router>
+    </Provider>
+  </StyleRoot>,
   document.getElementById('root')
 );
 
