@@ -51,7 +51,7 @@ const SearchArea = ({
     distance: '25'
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = () => {
     setMapOptions({
       zoom: 9,
       isMarkerShown: true

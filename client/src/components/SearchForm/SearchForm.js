@@ -18,11 +18,10 @@ const propTypes = {
 };
 
 let SearchForm = ({
-  handleSubmit,
   sex,
   age,
   goodWith,
-  distance,
+  handleSubmit,
   setMapOptions,
   setActivePage,
   searchDataFetch
