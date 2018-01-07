@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Card from './Card';
-import { StyleRoot } from 'radium';
 
 describe('Card', () => {
   let props;
@@ -15,11 +14,7 @@ describe('Card', () => {
       onClick: jest.fn()
     };
 
-    wrapper = mount(
-      <StyleRoot>
-        <Card {...props} />
-      </StyleRoot>
-    );
+    wrapper = mount(<Card {...props} />);
   });
 
   it('renders without crashing', () => {
@@ -38,16 +33,14 @@ describe('Card', () => {
     props = { ...props, isAdoptionPending: 'Yes' };
 
     wrapper = mount(
-      <StyleRoot>
-        <Card {...props} />
-      </StyleRoot>
+      <Card {...props} />
     );
 
-    expect(wrapper.html()).toContain('Pending');
+    expect(wrapper.html()).toContain('Adoption<br>Pending');
   });
 
   it('if isAdoptionPending is NOT `Yes`, don\'t show ribbon', () => {
-    expect(wrapper.html()).not.toContain('Pending');
+    expect(wrapper.html()).not.toContain('Adoption<br>Pending');
   });
 
   it('clicking on component fires `onClick`', () => {
