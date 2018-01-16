@@ -14,7 +14,10 @@ const propTypes = {
   isMarkerShown: PropTypes.bool.isRequired,
   locationCoords: PropTypes.object,
   distance: PropTypes.string.isRequired,
-  searchResults: PropTypes.object
+  searchResults: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ])
 };
 
 const defaultProps = {
@@ -95,7 +98,9 @@ const Map = withGoogleMap(({
           defaultIcon={require('../../media/images/map-icon-house.png')}
         />
       }
-      {isMarkerShown && searchResults && parseSearchResults()}
+      {isMarkerShown && searchResults && typeof searchResults === 'object' &&
+        parseSearchResults()
+      }
     </GoogleMap>
   );
 });

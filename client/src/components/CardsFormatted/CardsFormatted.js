@@ -11,7 +11,10 @@ import Radium from 'radium';
 const propTypes = {
   isFetching: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
-  searchResults: PropTypes.object
+  searchResults: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ])
 };
 
 const CardsFormatted = ({ isFetching, isError, searchResults }) => {
@@ -23,7 +26,14 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
     }
   };
 
-  if (searchResults && !isFetching) {
+  if (Array.isArray(searchResults)) {
+    return (
+      <ContentCentered>
+        <h3>Sorry there were no results!</h3>
+        <h3>Try searching a larger area and checking more options.</h3>
+      </ContentCentered>
+    );
+  } else if (searchResults && typeof searchResults === 'object' && !isFetching) {
     return (
       <ContentCentered>
         <div style={style.base}>
