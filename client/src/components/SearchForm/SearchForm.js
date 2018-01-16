@@ -75,6 +75,11 @@ let SearchForm = ({
     }
   };
 
+  const handleFieldChange = () => {
+    setActivePage(1);
+    searchDataFetch();
+  };
+
   return (
     <form
       style={style.base}
@@ -102,7 +107,7 @@ let SearchForm = ({
               ...style.error.border
             }
           }
-          onChange={searchDataFetch}
+          onChange={handleFieldChange}
         >
           <h3 style={style.searchOptions.h3}>Sex</h3>
           {['Male', 'Female'].map((item) => (
@@ -135,7 +140,7 @@ let SearchForm = ({
               ...style.error.border
             }
           }
-          onChange={searchDataFetch}
+          onChange={handleFieldChange}
         >
           <h3 style={style.searchOptions.h3}>Age</h3>
           {['Baby', 'Young', 'Adult', 'Senior'].map((item) => (
@@ -168,7 +173,7 @@ let SearchForm = ({
               ...style.error.border
             }
           }
-          onChange={searchDataFetch}
+          onChange={handleFieldChange}
         >
           <h3 style={style.searchOptions.h3}>Good With</h3>
           {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
@@ -195,7 +200,7 @@ let SearchForm = ({
         </div>
         <div
           style={style.searchOptions.block}
-          onChange={searchDataFetch}
+          onChange={handleFieldChange}
         >
           <h3 style={style.searchOptions.h3}>Max Distance</h3>
           {['10', '25', '50', '100'].map((item) => (
