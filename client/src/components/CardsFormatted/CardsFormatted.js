@@ -9,6 +9,7 @@ import Spinner from '../Spinner/Spinner';
 import Radium from 'radium';
 
 const propTypes = {
+  isOpen: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   searchResults: PropTypes.oneOfType([
@@ -17,7 +18,7 @@ const propTypes = {
   ])
 };
 
-const CardsFormatted = ({ isFetching, isError, searchResults }) => {
+const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
   const style = {
     base: {
       display: 'flex',
@@ -73,7 +74,7 @@ const CardsFormatted = ({ isFetching, isError, searchResults }) => {
     );
   } else if (isFetching) {
     return (
-      <Spinner />
+      <Spinner isOpen={isOpen} />
     );
   } else if (isError) {
     return (

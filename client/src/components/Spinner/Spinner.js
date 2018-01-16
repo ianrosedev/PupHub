@@ -1,17 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
-const Spinner = () => {
+const propTypes = {
+  isOpen: PropTypes.bool.isRequired
+};
+
+const Spinner = ({ isOpen }) => {
   const style = {
     base: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: 'calc(100vh - 215px)'
+      height: isOpen ? '38vh' : '88vh'
     },
     i: {
-      color: colors.secondaryDark
+      color: colors.secondaryDark,
     }
   };
 
@@ -26,5 +31,7 @@ const Spinner = () => {
     </div>
   );
 };
+
+Spinner.propTypes = propTypes;
 
 export default Radium(Spinner);
