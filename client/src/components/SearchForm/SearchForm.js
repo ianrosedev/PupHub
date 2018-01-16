@@ -10,7 +10,7 @@ import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 const propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  distance: PropTypes.string,
   setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired,
@@ -21,7 +21,7 @@ let SearchForm = ({
   sex,
   age,
   goodWith,
-  handleSubmit,
+  distance,
   setMapOptions,
   setActivePage,
   searchDataFetch
@@ -81,10 +81,7 @@ let SearchForm = ({
   };
 
   return (
-    <form
-      style={style.base}
-      onSubmit={handleSubmit}
-    >
+    <form style={style.base}>
       <Field
         name='location'
         component={SearchBar}
@@ -94,6 +91,7 @@ let SearchForm = ({
           (age && age.length === 0) ||
           (goodWith && goodWith.length === 0)
         }
+        distance={distance}
         setMapOptions={setMapOptions}
         setActivePage={setActivePage}
         searchDataFetch={searchDataFetch}
@@ -213,6 +211,15 @@ let SearchForm = ({
                 component='input'
                 type='radio'
                 value={item}
+                onChange={() => setMapOptions({
+                  zoom: (
+                    item === '10' ? 10 :
+                    item === '25' ? 9 :
+                    item === '50' ? 8 :
+                    7
+                  ),
+                  isMarkerShown: true
+                })}
               />
               {' ' + item + ' Miles '}
             </span>

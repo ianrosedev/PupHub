@@ -8,6 +8,7 @@ import colors from '../../media/styles/colors';
 
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  distance: PropTypes.string,
   toggleSearchArea: PropTypes.func.isRequired,
   setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
@@ -16,6 +17,7 @@ const propTypes = {
 
 const SearchArea = ({
   isOpen,
+  distance,
   toggleSearchArea,
   setMapOptions,
   setActivePage,
@@ -51,22 +53,13 @@ const SearchArea = ({
     distance: '25'
   };
 
-  const onSubmit = () => {
-    setMapOptions({
-      zoom: 9,
-      isMarkerShown: true
-    });
-    setActivePage(1);
-    searchDataFetch();
-  };
-
   return (
     <div style={style.base}>
       <div style={style.content}>
         <ContentCentered>
           <SearchForm
-            onSubmit={onSubmit}
             initialValues={formInitialValues}
+            distance={distance}
             setMapOptions={setMapOptions}
             setActivePage={setActivePage}
             searchDataFetch={searchDataFetch}

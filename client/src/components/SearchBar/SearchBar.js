@@ -10,6 +10,7 @@ const propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   isDisabled: PropTypes.bool,
+  distance: PropTypes.string,
   setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
@@ -76,6 +77,8 @@ class SearchBar extends Component {
       }
     },
     (results, status) => {
+      const { distance } = this.props;
+
       if (status === 'OK') {
         const address = results[0].formatted_address;
         const lat = results[0].geometry.location.lat();
@@ -95,7 +98,12 @@ class SearchBar extends Component {
 
         // Fetch data
         setMapOptions({
-          zoom: 9,
+          zoom: (
+            distance === '10' ? 10 :
+            distance === '25' ? 9 :
+            distance === '50' ? 8 :
+            7
+          ),
           isMarkerShown: true
         });
         setActivePage(1);
