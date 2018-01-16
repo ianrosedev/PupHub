@@ -156,7 +156,14 @@ class SearchBar extends Component {
 
     return (
       <div style={(touched && error) ? this.style.error.border : null}>
-        <div style={this.style.base}>
+        <div style={this.style.base}
+          onKeyPress={(e) => {
+            if (e.charCode === 13) {
+              e.stopPropagation();
+              e.preventDefault();
+            }
+          }}
+        >
           <i
             style={this.style.base.i}
             className='fa fa-search'
@@ -180,7 +187,7 @@ class SearchBar extends Component {
           </StandaloneSearchBox>
           <button
             style={this.style.base.button}
-            type='submit'
+            type='button'
             disabled={isDisabled || this.state.isFindingPosition}
           >
             Submit
