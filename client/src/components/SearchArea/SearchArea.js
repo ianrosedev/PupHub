@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentCentered from '../ContentCentered/ContentCentered';
 import SearchForm from '../SearchForm/SearchForm';
 import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
@@ -28,7 +27,8 @@ const SearchArea = ({
       backgroundColor: colors.primaryLightest
     },
     content: {
-      display: isOpen ? 'block' : 'none'
+      display: isOpen ? 'block' : 'none',
+      padding: '3vh 6vw'
     },
     toggleControl: {
       width: '100vw',
@@ -56,16 +56,14 @@ const SearchArea = ({
   return (
     <div style={style.base}>
       <div style={style.content}>
-        <ContentCentered>
-          <SearchForm
-            initialValues={formInitialValues}
-            distance={distance}
-            setMapOptions={setMapOptions}
-            setActivePage={setActivePage}
-            searchDataFetch={searchDataFetch}
-          />
-          <MapContainer />
-        </ContentCentered>
+        <SearchForm
+          initialValues={formInitialValues}
+          distance={distance}
+          setMapOptions={setMapOptions}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
+        />
+        <MapContainer />
       </div>
       <div style={style.toggleControl}>
         <span style={style.toggleControl.icons}>
