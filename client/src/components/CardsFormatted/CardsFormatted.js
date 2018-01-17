@@ -79,7 +79,8 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
   } else if (isError) {
     return (
       <ContentCentered>
-        <h3>Sorry, there was an error! Please try again.</h3>
+        <h3>Sorry, there was an error!</h3>
+        <h3>Please try again.</h3>
       </ContentCentered>
     )
   } else {
