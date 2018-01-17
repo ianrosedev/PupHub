@@ -16,7 +16,7 @@ const Card = ({ name, img, isAdoptionPending, onClick }) => {
       position: 'relative',
       width: 200,
       height: (name.length < 20 ) ? 230 : 'auto',
-      margin: 20,
+      margin: '0 20px 40px 0px',
       paddingBottom: 5,
       borderRadius: 5,
       backgroundColor: colors.primaryLightest,

@@ -9,7 +9,7 @@ const propTypes = {
 const ContentCentered = ({ children }) => {
   const style = {
     base: {
-      padding: '3vh 6vw'
+      padding: '6vh 6vw'
     }
   };
 
