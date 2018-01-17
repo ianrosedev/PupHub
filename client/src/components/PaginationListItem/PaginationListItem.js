@@ -23,6 +23,7 @@ const defaultProps = {
 };
 
 const PaginationListItem = ({
+  isOpen,
   pageText,
   pageNumber,
   isFirstElement,
@@ -73,6 +74,7 @@ const PaginationListItem = ({
     e.preventDefault();
     setActivePage(pageNumber);
     searchDataFetch();
+    window.scrollTo(0, 0);
   };
 
   const buildStyle = () => {
