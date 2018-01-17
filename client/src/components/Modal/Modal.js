@@ -83,8 +83,13 @@ const Modal = ({ individualResult, closePortal }) => {
       fontSize: 18,
       margin: 7
     },
-    p: {
+    description: {
       margin: 20
+    },
+    noImageFound: {
+      width: 300,
+      height: 'inherit',
+      margin: '30px auto'
     }
   };
 
@@ -112,30 +117,38 @@ const Modal = ({ individualResult, closePortal }) => {
           </i>
         </div>
         <div style={style.infoContainer}>
-          <div style={style.carousel}>
-            <Carousel
-              showThumbs={false}
-              showStatus={false}
-              showArrows={animalPictures.length > 1}
-              showIndicators={animalPictures.length > 1}
-              autoPlay={true}
-              interval={4000}
-              infiniteLoop={true}
-            >
-              {animalPictures.map((img) => (
-                <div
-                  key={individualResult.animalID}
-                  style={style.imgContainer}
-                >
-                  <img
-                    style={style.img}
-                    src={img.urlSecureFullsize}
-                    alt={animalName}
-                  />
-                </div>
-              ))}
-            </Carousel>
-          </div>
+          {(animalPictures.length > 0) ? (
+            <div style={style.carousel}>
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                showArrows={animalPictures.length > 1}
+                showIndicators={animalPictures.length > 1}
+                autoPlay={true}
+                interval={4000}
+                infiniteLoop={true}
+              >
+                {animalPictures.map((img) => (
+                  <div
+                    key={individualResult.animalID}
+                    style={style.imgContainer}
+                  >
+                    <img
+                      style={style.img}
+                      src={img.urlSecureFullsize}
+                      alt={animalName}
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          ) : (
+            <img
+              style={style.noImageFound}
+              src={require('../../media/images/no-photo-found.jpg')}
+              alt='None found'
+            />
+          )}
           <h1 style={style.h1}>{animalName ? animalName : 'Name Not Known'}</h1>
           <div style={style.listContainer}>
             <ul style={style.list}>
@@ -151,10 +164,14 @@ const Modal = ({ individualResult, closePortal }) => {
           </div>
         </div>
         <ContentCentered>
-          <p
-            style={style.p}
-            dangerouslySetInnerHTML={{ __html: animalDescription }}
-          />
+          {(animalDescription) ? (
+            <div
+              style={style.description}
+              dangerouslySetInnerHTML={{ __html: animalDescription }}
+            />
+          ) : (
+            <h3>Sorry, there is no description for this animal.</h3>
+          )}
         </ContentCentered>
       </div>
     </div>
