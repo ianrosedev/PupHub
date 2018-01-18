@@ -83,7 +83,7 @@ app.post('/search/general', (req, res) => {
       }
     };
 
-    if (sex.length < 2) {
+    if (sex && sex.length < 2) {
       body.search.filters.push({
         fieldName: 'animalSex',
         operation: 'equals',
@@ -91,7 +91,7 @@ app.post('/search/general', (req, res) => {
       });
     }
 
-    if (age.length < 4) {
+    if (age && age.length < 4) {
       body.search.filters.push({
         fieldName: 'animalGeneralAge',
         operation: 'equals',
@@ -99,7 +99,7 @@ app.post('/search/general', (req, res) => {
       });
     }
 
-    if (goodWith.find(el => el === 'Kids')) {
+    if (goodWith && goodWith.find(el => el === 'Kids')) {
       body.search.filters.push({
         fieldName: 'animalOKWithKids',
   	    operation: 'equals',
@@ -107,7 +107,7 @@ app.post('/search/general', (req, res) => {
       });
     }
 
-    if (goodWith.find(el => el === 'Dogs')) {
+    if (goodWith && goodWith.find(el => el === 'Dogs')) {
       body.search.filters.push({
         fieldName: 'animalOKWithDogs',
   	    operation: 'equals',
@@ -115,7 +115,7 @@ app.post('/search/general', (req, res) => {
       });
     }
 
-    if (goodWith.find(el => el === 'Cats')) {
+    if (goodWith && goodWith.find(el => el === 'Cats')) {
       body.search.filters.push({
         fieldName: 'animalOKWithCats',
   	    operation: 'equals',

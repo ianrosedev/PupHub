@@ -49,6 +49,12 @@ export const searchDataFetch = () => {
     const activePage = state.pagination.activePage;
     const formValues = state.form.searchForm.values;
 
+    // Keep down API requests if not needed
+    if (!formValues.sex || !formValues.age ||
+        !formValues.goodWith || !formValues.distance) {
+      return;
+    }
+
     const searchSettings = {
       activePage,
       zipcode: formValues.locationZip,
