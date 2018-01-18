@@ -49,7 +49,8 @@ export const searchDataFetch = () => {
     const activePage = state.pagination.activePage;
     const formValues = state.form.searchForm.values;
 
-    // Keep down API requests if not needed
+    // Keep down unneeded API requests
+    // Values !true if page is left before getting them
     if (!formValues.sex || !formValues.age ||
         !formValues.goodWith || !formValues.distance) {
       return;
