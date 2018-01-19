@@ -13,14 +13,14 @@ describe('App', () => {
   });
 
   it('renders 1 `Header` component', () => {
-    expect(wrapper.find(Header).length).toBe(1);
+    expect(wrapper.find(Header)).toHaveLength(1);
   });
 
   it('renders 1 `Body` component', () => {
-    expect(wrapper.find(Body).length).toBe(1);
+    expect(wrapper.find(Body)).toHaveLength(1);
   });
 
   it('renders 1 `Footer` component', () => {
-    expect(wrapper.find(Footer).length).toBe(1);
+    expect(wrapper.find(Footer)).toHaveLength(1);
   });
 });
