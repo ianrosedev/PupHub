@@ -166,6 +166,7 @@ const Modal = ({ individualResult, closePortal }) => {
         <ContentCentered>
           {(animalDescription) ? (
             <div
+              id='testing-description'
               style={style.description}
               dangerouslySetInnerHTML={{ __html: animalDescription }}
             />

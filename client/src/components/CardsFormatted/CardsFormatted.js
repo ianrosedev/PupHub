@@ -86,7 +86,7 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
   } else {
     return (
       <ContentCentered>
-        <h3>Hit <em>Submit</em> to see some pups!</h3>
+        <h3>Let's find some pups!</h3>
       </ContentCentered>
     );
   }

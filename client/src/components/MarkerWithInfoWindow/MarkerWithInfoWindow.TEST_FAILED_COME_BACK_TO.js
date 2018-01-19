@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import MarkerWithInfoWindow from './MarkerWithInfoWindow';
 
 describe('MarkerWithInfoWindow', () => {
@@ -14,10 +14,11 @@ describe('MarkerWithInfoWindow', () => {
       label: {}
     };
 
-    wrapper = shallow(<MarkerWithInfoWindow {...props} />);
+    wrapper = mount(<MarkerWithInfoWindow {...props} />);
   });
 
   it('renders without crashing', () => {
+    console.log(wrapper.debug());
     wrapper;
   });
 });

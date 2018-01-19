@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import CheckboxArray from './CheckboxArray';
 
 describe('CheckboxArray', () => {
@@ -9,12 +9,12 @@ describe('CheckboxArray', () => {
   beforeEach(() => {
     props = {
       input: {
-        value: 'foo'
+        value: ['foo']
       },
-      itemValue: 'Foo'
+      itemValue: 'bar'
     };
 
-    wrapper = mount(<CheckboxArray {...props} />);
+    wrapper = shallow(<CheckboxArray {...props} />);
   });
 
   it('renders without crashing', () => {
@@ -23,5 +23,16 @@ describe('CheckboxArray', () => {
 
   it('contains 1 `input` element', () => {
     expect(wrapper.find('input')).toHaveLength(1);
+  });
+
+  it('if input.value matches itemValue `checked` is true', () => {
+    props.itemValue = 'foo';
+    wrapper = shallow(<CheckboxArray {...props} />);
+
+    expect(wrapper.find('input').prop('checked')).toBe(true);
+  });
+
+  it('if input.value DOESN\'T match itemValue `checked` is false', () => {
+    expect(wrapper.find('input').prop('checked')).toBe(false);
   });
 });

@@ -1,14 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Brand from './Brand';
-import { StyleRoot } from 'radium';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('Brand', () => {
-  const wrapper = mount(
-    <StyleRoot>
-      <Brand />
-    </StyleRoot>
-  );
+  const wrapper = shallow(<Brand />);
 
   it('renders without crashing', () => {
     wrapper;

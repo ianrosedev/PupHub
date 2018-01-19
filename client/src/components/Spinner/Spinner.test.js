@@ -3,7 +3,16 @@ import { shallow } from 'enzyme';
 import Spinner from './Spinner';
 
 describe('Spinner', () => {
-  const wrapper = shallow(<Spinner />);
+  let props;
+  let wrapper;
+
+  beforeEach(() => {
+    props = {
+      isOpen: true
+    };
+
+    wrapper = shallow(<Spinner {...props} />);
+  });
 
   it('renders without crashing', () => {
     wrapper;

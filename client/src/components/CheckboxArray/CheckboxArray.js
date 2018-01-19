@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  input: PropTypes.object.isRequired,
+  input: PropTypes.shape({
+    value: PropTypes.array.isRequired
+  }),
   itemValue: PropTypes.string.isRequired
 };
 

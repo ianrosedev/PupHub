@@ -9,23 +9,23 @@ describe('Home', () => {
     wrapper;
   });
 
-  it('contains 1 image', () => {
-    expect(wrapper.find('img').length).toBe(1);
+  it('contains 1 image element', () => {
+    expect(wrapper.find('img')).toHaveLength(1);
   });
 
-  it('contains 1 `H1`', () => {
-    expect(wrapper.find('h1').length).toBe(1);
+  it('contains 1 `H1` element', () => {
+    expect(wrapper.find('h1')).toHaveLength(1);
   });
 
   it('contains a link to `/search`', () => {
-    expect(wrapper.find('Link[to="/search"]').length).toBe(1);
+    expect(wrapper.find('Link[to="/search"]')).toHaveLength(1);
   });
 
   it('contains a link to `/resources`', () => {
-    expect(wrapper.find('Link[to="/resources"]').length).toBe(1);
+    expect(wrapper.find('Link[to="/resources"]')).toHaveLength(1);
   });
 
   it('contains a link to `rescuegroups.org`', () => {
-    expect(wrapper.find('a[href="https://rescuegroups.org"]').length).toBe(1);
+    expect(wrapper.find('a[href="https://rescuegroups.org"]')).toHaveLength(1);
   });
 });

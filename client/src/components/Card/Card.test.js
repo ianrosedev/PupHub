@@ -30,7 +30,7 @@ describe('Card', () => {
   });
 
   it('if isAdoptionPending is `Yes`, show ribbon', () => {
-    props = { ...props, isAdoptionPending: 'Yes' };
+    props.isAdoptionPending = 'Yes';
 
     wrapper = mount(
       <Card {...props} />
