@@ -79,11 +79,11 @@ const PaginationListItem = ({
 
   const buildStyle = () => {
     if (isFirstElement) {
-      return { ...style.button, ...style.button.isFirstElement };
+      return [style.button, style.button.isFirstElement];
     } else if (isLastElement) {
-      return { ...style.button, ...style.button.isLastElement };
+      return [style.button, style.button.isLastElement];
     } else if (isActive) {
-      return { ...style.button, ...style.button.isActive };
+      return [style.button, style.button.isActive];
     } else {
       return style.button;
     }
