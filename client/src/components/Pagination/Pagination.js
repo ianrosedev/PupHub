@@ -9,7 +9,6 @@ const propTypes = {
   itemsCountPerPage: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
   pageRangeDisplayed: PropTypes.number.isRequired,
-  hideDisabled: PropTypes.bool,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
 };
@@ -25,7 +24,6 @@ const Pagination = ({
   itemsCountPerPage,
   activePage,
   pageRangeDisplayed,
-  hideDisabled,
   setActivePage,
   searchDataFetch
 }) => {
@@ -56,59 +54,51 @@ const Pagination = ({
       );
     }
 
-    if (!(hideDisabled && !paginationInfo.has_previous_page)) {
-      pages.unshift(
-        <PaginationListItem
-          key={'prev' + paginationInfo.previous_page}
-          pageNumber={paginationInfo.previous_page}
-          pageText='⟨'
-          isDisabled={!paginationInfo.has_previous_page}
-          setActivePage={setActivePage}
-          searchDataFetch={searchDataFetch}
-        />
-      );
-    }
+    pages.unshift(
+      <PaginationListItem
+        key={'prev' + paginationInfo.previous_page}
+        pageNumber={paginationInfo.previous_page}
+        pageText='⟨'
+        isDisabled={!paginationInfo.has_previous_page}
+        setActivePage={setActivePage}
+        searchDataFetch={searchDataFetch}
+      />
+    );
 
-    if (!(hideDisabled && !paginationInfo.has_previous_page)) {
-      pages.unshift(
-        <PaginationListItem
-          key='first'
-          pageNumber={1}
-          pageText='First'
-          isDisabled={!paginationInfo.has_previous_page}
-          isFirstElement
-          setActivePage={setActivePage}
-          searchDataFetch={searchDataFetch}
-        />
-      );
-    }
+    pages.unshift(
+      <PaginationListItem
+        key='first'
+        pageNumber={1}
+        pageText='First'
+        isDisabled={!paginationInfo.has_previous_page}
+        isFirstElement
+        setActivePage={setActivePage}
+        searchDataFetch={searchDataFetch}
+      />
+    );
 
-    if (!(hideDisabled && !paginationInfo.has_next_page)) {
-      pages.push(
-        <PaginationListItem
-          key={'next' + paginationInfo.next_page}
-          pageNumber={paginationInfo.next_page}
-          pageText='⟩'
-          isDisabled={!paginationInfo.has_next_page}
-          setActivePage={setActivePage}
-          searchDataFetch={searchDataFetch}
-        />
-      );
-    }
+    pages.push(
+      <PaginationListItem
+        key={'next' + paginationInfo.next_page}
+        pageNumber={paginationInfo.next_page}
+        pageText='⟩'
+        isDisabled={!paginationInfo.has_next_page}
+        setActivePage={setActivePage}
+        searchDataFetch={searchDataFetch}
+      />
+    );
 
-    if (!(hideDisabled && !paginationInfo.has_next_page)) {
-      pages.push(
-        <PaginationListItem
-          key='last'
-          pageNumber={paginationInfo.total_pages}
-          pageText='Last'
-          isDisabled={paginationInfo.current_page === paginationInfo.total_pages}
-          isLastElement
-          setActivePage={setActivePage}
-          searchDataFetch={searchDataFetch}
-        />
-      );
-    }
+    pages.push(
+      <PaginationListItem
+        key='last'
+        pageNumber={paginationInfo.total_pages}
+        pageText='Last'
+        isDisabled={paginationInfo.current_page === paginationInfo.total_pages}
+        isLastElement
+        setActivePage={setActivePage}
+        searchDataFetch={searchDataFetch}
+      />
+    );
 
     return pages;
   };
