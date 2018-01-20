@@ -68,7 +68,8 @@ const SearchArea = ({
       <div style={style.toggleControl}>
         <span style={style.toggleControl.icons}>
           <i
-            className={`fa fa-caret-${isOpen ? 'up' : 'down'} fa-2x aria-hidden=true`}
+            className={`fa fa-caret-${isOpen ? 'up' : 'down'} fa-2x`}
+            aria-hidden='true'
             onClick={toggleSearchArea}
           >
           </i>
