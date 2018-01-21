@@ -10,7 +10,6 @@ import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 const propTypes = {
-  distance: PropTypes.string,
   setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired,
@@ -236,12 +235,18 @@ const selector = formValueSelector('searchForm');
 SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));
 
 SearchForm = connect((state) => {
-  const { sex, age, goodWith } = selector(state, 'sex', 'age', 'goodWith');
+  const {
+    sex,
+    age,
+    goodWith,
+    distance = null
+  } = selector(state, 'sex', 'age', 'goodWith', 'distance');
 
   return {
     sex,
     age,
-    goodWith
+    goodWith,
+    distance
   };
 })(SearchForm);
 
