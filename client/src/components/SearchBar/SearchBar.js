@@ -109,7 +109,7 @@ class SearchBar extends Component {
         setActivePage(1);
         searchDataFetch();
       } else {
-        console.log(status);
+        return alert('Sorry, there was an error!\nPlease check your internet connection and try again.');
       }
     });
   };
@@ -134,13 +134,13 @@ class SearchBar extends Component {
               isFindingPosition: false
             });
           } else {
-            console.log(status);
+            return this.handleError();
           }
         }
       );
     };
 
-    const locationError = (error) => {
+    const locationError = () => {
       // Default to user input
       this.setState({
         isFindingPosition: false
@@ -148,10 +148,14 @@ class SearchBar extends Component {
     };
 
     // Reverse geocode to get city
-    navigator.geolocation.getCurrentPosition(
-      position => locationSuccess(position),
-      error => locationError(error)
-    );
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => locationSuccess(position),
+        error => locationError()
+      );
+    } else {
+      return locationError();
+    };
   };
 
   componentDidMount() {
