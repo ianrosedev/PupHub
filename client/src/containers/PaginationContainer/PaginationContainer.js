@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import { setActivePage, searchDataFetch } from '../../actions/actions';
 import Pagination from '../../components/Pagination/Pagination';
 
-const mapStateToProps = ({ search, pagination }, ownProps) => ({
-  ...ownProps,
+const mapStateToProps = ({ search, pagination }) => ({
   totalItemsCount: search.searchResults.foundRows,
   activePage: pagination.activePage
 });
