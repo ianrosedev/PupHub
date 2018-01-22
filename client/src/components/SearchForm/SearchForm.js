@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { reduxForm, formValueSelector, Field, propTypes as reduxFormPropTypes } from 'redux-form';
-import { required } from '../../helpers/formValidation/formValidation';
+import { reduxForm, Field, propTypes as reduxFormPropTypes } from 'redux-form';
+import { searchFormValidation } from '../../helpers/searchFormValidation/searchFormValidation';
 import CheckboxArray from '../CheckboxArray/CheckboxArray';
 import SearchBar from '../SearchBar/SearchBar';
 import Radium from 'radium';
@@ -16,7 +15,7 @@ const propTypes = {
   ...reduxFormPropTypes
 };
 
-let SearchForm = ({
+export const SearchForm = ({
   sex,
   age,
   goodWith,
@@ -84,7 +83,7 @@ let SearchForm = ({
       <Field
         name='location'
         component={SearchBar}
-        validate={required}
+        validate={searchFormValidation}
         isDisabled={
           (sex && sex.length === 0) ||
           (age && age.length === 0) ||
@@ -231,23 +230,4 @@ let SearchForm = ({
 
 SearchForm.propTypes = propTypes;
 
-const selector = formValueSelector('searchForm');
-SearchForm = reduxForm({ form: 'searchForm' })(Radium(SearchForm));
-
-SearchForm = connect((state) => {
-  const {
-    sex,
-    age,
-    goodWith,
-    distance = null
-  } = selector(state, 'sex', 'age', 'goodWith', 'distance');
-
-  return {
-    sex,
-    age,
-    goodWith,
-    distance
-  };
-})(SearchForm);
-
-export default SearchForm;
+export default reduxForm({ form: 'searchForm' })(Radium(SearchForm));
