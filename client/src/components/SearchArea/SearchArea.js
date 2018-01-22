@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchForm from '../SearchForm/SearchForm';
+import SearchFormContainer from '../../containers/SearchFormContainer/SearchFormContainer';
 import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
@@ -56,7 +56,7 @@ const SearchArea = ({
   return (
     <div style={style.base}>
       <div style={style.content}>
-        <SearchForm
+        <SearchFormContainer
           initialValues={formInitialValues}
           distance={distance}
           setMapOptions={setMapOptions}
