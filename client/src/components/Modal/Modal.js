@@ -105,8 +105,17 @@ const Modal = ({ individualResult, closePortal }) => {
     animalDescription
   } = individualResult;
 
+  const closePortalWithEscape = (e) => {
+    if (e.charCode === 27) {
+      closePortal();
+    }
+  };
+
   return (
-    <div style={style.background}>
+    <div
+      style={style.background}
+      onClick={(e) => closePortalWithEscape(e)}
+    >
       <div style={style.base}>
         <div style={style.topBar}>
           <i
