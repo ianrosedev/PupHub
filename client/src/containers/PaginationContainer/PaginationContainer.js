@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setActivePage, searchDataFetch } from '../../actions/actions';
+import { setActivePage, setLastPage, searchDataFetch } from '../../actions/actions';
 import Pagination from '../../components/Pagination/Pagination';
 
 const mapStateToProps = ({ search, pagination }) => ({
@@ -9,6 +9,7 @@ const mapStateToProps = ({ search, pagination }) => ({
 
 const mapDispatchToProps = {
   setActivePage,
+  setLastPage,
   searchDataFetch
 };
 

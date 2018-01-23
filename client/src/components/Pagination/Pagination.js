@@ -10,6 +10,7 @@ const propTypes = {
   activePage: PropTypes.number.isRequired,
   pageRangeDisplayed: PropTypes.number.isRequired,
   setActivePage: PropTypes.func.isRequired,
+  setLastPage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
 };
 
@@ -25,6 +26,7 @@ const Pagination = ({
   activePage,
   pageRangeDisplayed,
   setActivePage,
+  setLastPage,
   searchDataFetch
 }) => {
   const style = {
@@ -40,6 +42,8 @@ const Pagination = ({
 
     const paginationInfo = new paginator(itemsCountPerPage, pageRangeDisplayed)
       .build(totalItemsCount, activePage);
+
+    setLastPage(paginationInfo.total_pages);
 
     for (let i = paginationInfo.first_page; i <= paginationInfo.last_page; i++) {
       pages.push(

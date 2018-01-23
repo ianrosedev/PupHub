@@ -4,6 +4,7 @@ import {
   SEARCH_DATA_ERROR,
   SET_MAP_OPTIONS,
   SET_ACTIVE_PAGE,
+  SET_LAST_PAGE,
   TOGGLE_SEARCH_AREA
 } from '../constants/constants';
 
@@ -36,6 +37,11 @@ export const setMapOptions = ({ zoom, isMarkerShown }) => ({
 export const setActivePage = (activePage) => ({
   type: SET_ACTIVE_PAGE,
   activePage
+});
+
+export const setLastPage = (page) => ({
+  type: SET_LAST_PAGE,
+  lastPage: page
 });
 
 export const toggleSearchArea = () => ({

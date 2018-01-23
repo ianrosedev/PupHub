@@ -1,7 +1,8 @@
-import { SET_ACTIVE_PAGE } from '../../constants/constants';
+import { SET_ACTIVE_PAGE, SET_LAST_PAGE } from '../../constants/constants';
 
 const initialState = {
-  activePage: 1
+  activePage: 1,
+  lastPage: 1
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         activePage: action.activePage
+      };
+    case SET_LAST_PAGE:
+      return {
+        ...state,
+        lastPage: action.lastPage
       };
     default:
       return state;

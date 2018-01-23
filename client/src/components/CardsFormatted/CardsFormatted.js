@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import Card from '../Card/Card';
+import PageCountContainer from '../../containers/PageCountContainer/PageCountContainer';
 import PaginationContainer from '../../containers/PaginationContainer/PaginationContainer';
 import { PortalWithState } from 'react-portal';
 import Modal from '../Modal/Modal';
@@ -37,6 +38,7 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
   } else if (searchResults && typeof searchResults === 'object' && !isFetching) {
     return (
       <ContentCentered>
+        <PageCountContainer />
         <div style={style.base}>
           {Object.keys(searchResults).map((key) => (
             <PortalWithState
