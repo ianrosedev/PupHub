@@ -14,6 +14,7 @@ describe('Pagination', () => {
       pageRangeDisplayed: 5,
       hideDisabled: false,
       setActivePage: jest.fn(),
+      setLastPage: jest.fn(),
       searchDataFetch: jest.fn()
     };
 

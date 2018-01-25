@@ -4,7 +4,8 @@ import { SET_ACTIVE_PAGE } from '../../constants/constants';
 describe('pagination reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
-      activePage: 1
+      activePage: 1,
+      lastPage: 1
     });
   });
 
@@ -13,7 +14,8 @@ describe('pagination reducer', () => {
       type: SET_ACTIVE_PAGE,
       activePage: 7
     })).toEqual({
-      activePage: 7
+      activePage: 7,
+      lastPage: 1
     });
   });
 });

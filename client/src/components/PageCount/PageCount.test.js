@@ -16,7 +16,6 @@ describe(`PageCount`, () => {
   });
 
   it('renders without crashing', () => {
-    console.log(wrapper.debug());
     wrapper;
   });
 

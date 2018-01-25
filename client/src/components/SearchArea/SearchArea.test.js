@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SearchArea from './SearchArea';
-import SearchForm from '../SearchForm/SearchForm';
+import SearchFormContainer from '../../containers/SearchFormContainer/SearchFormContainer';
 import MapContainer from '../../containers/MapContainer/MapContainer';
 
 describe('SearchArea', () => {
@@ -25,8 +25,8 @@ describe('SearchArea', () => {
     wrapper;
   });
 
-  it('contains 1 `SearchForm`', () => {
-    expect(wrapper.find(SearchForm)).toHaveLength(1);
+  it('contains 1 `SearchFormContainer`', () => {
+    expect(wrapper.find(SearchFormContainer)).toHaveLength(1);
   });
 
   it('contains 1 `MapContainer`', () => {
