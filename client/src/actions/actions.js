@@ -73,7 +73,7 @@ export const searchDataFetch = () => {
 
     dispatch(searchDataRequest());
 
-    fetch('/search/general', {
+    return fetch('/search/general', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ export const searchDataFetch = () => {
       body: JSON.stringify(searchSettings)
     })
       .then(response => response.json())
-      .then(response => dispatch(searchDataResponse(JSON.parse(response))))
+      .then(response => dispatch(searchDataResponse(response)))
       .catch(error => dispatch(searchDataError()));
   };
 };

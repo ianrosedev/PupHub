@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
         isError: action.isError,
-        searchResults: action.searchResults
+        searchResults: JSON.parse(action.searchResults)
       };
     case SEARCH_DATA_ERROR:
       return {

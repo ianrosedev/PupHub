@@ -4,7 +4,7 @@ import Radium from 'radium';
 const PageCount = ({ activePage, lastPage }) => {
   const style = {
     base: {
-      margin: '-4vh 0 6vh 0'
+      margin: '-4vh 0 8vh 0'
     }
   };
 
