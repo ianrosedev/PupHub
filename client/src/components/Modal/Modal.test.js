@@ -137,6 +137,6 @@ describe('Modal', () => {
     props.individualResult.animalDescription = '';
     wrapper = shallow(<Modal {...props} />);
 
-    expect(wrapper.find('h3').text()).toBe('Sorry, there is no description for this animal.');
+    expect(wrapper.find('h3').text()).toBe('Sorry, there is no description for this dog.');
   });
 });

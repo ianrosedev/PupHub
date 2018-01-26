@@ -105,17 +105,16 @@ const Modal = ({ individualResult, closePortal }) => {
     animalDescription
   } = individualResult;
 
-  const closePortalWithEscape = (e) => {
-    if (e.charCode === 27) {
-      closePortal();
+  const checkValue = (value, text = 'Unknown') => {
+    if(!value) {
+      return text;
     }
+
+    return value;
   };
 
   return (
-    <div
-      style={style.background}
-      onClick={(e) => closePortalWithEscape(e)}
-    >
+    <div style={style.background}>
       <div style={style.base}>
         <div style={style.topBar}>
           <i
@@ -158,17 +157,17 @@ const Modal = ({ individualResult, closePortal }) => {
               alt='None found'
             />
           )}
-          <h1 style={style.h1}>{animalName ? animalName : 'Name Not Known'}</h1>
+          <h1 style={style.h1}>{checkValue(animalName, 'Name Not Known')}</h1>
           <div style={style.listContainer}>
             <ul style={style.list}>
-              <li style={style.listItem}>Sex: {animalSex ? animalSex : 'Unknown'}</li>
-              <li style={style.listItem}>Age: {animalGeneralAge ? animalGeneralAge : 'Unknown'}</li>
-              <li style={style.listItem}>Breed: {animalBreed ? animalBreed : 'Unknown'}</li>
+              <li style={style.listItem}>Sex: {checkValue(animalSex)}</li>
+              <li style={style.listItem}>Age: {checkValue(animalGeneralAge)}</li>
+              <li style={style.listItem}>Breed: {checkValue(animalBreed)}</li>
             </ul>
             <ul style={style.list}>
-              <li style={style.listItem}>Good With Dogs: {animalOKWithDogs ? animalOKWithDogs : 'Unknown'}</li>
-              <li style={style.listItem}>Good With Cats: {animalOKWithCats ? animalOKWithCats : 'Unknown'}</li>
-              <li style={style.listItem}>Good With Kids: {animalOKWithKids ? animalOKWithKids : 'Unknown'}</li>
+              <li style={style.listItem}>Good With Dogs: {checkValue(animalOKWithDogs)}</li>
+              <li style={style.listItem}>Good With Cats: {checkValue(animalOKWithCats)}</li>
+              <li style={style.listItem}>Good With Kids: {checkValue(animalOKWithKids)}</li>
             </ul>
           </div>
         </div>
@@ -180,7 +179,7 @@ const Modal = ({ individualResult, closePortal }) => {
               dangerouslySetInnerHTML={{ __html: animalDescription }}
             />
           ) : (
-            <h3>Sorry, there is no description for this animal.</h3>
+            <h3>Sorry, there is no description for this dog.</h3>
           )}
         </ContentCentered>
       </div>
