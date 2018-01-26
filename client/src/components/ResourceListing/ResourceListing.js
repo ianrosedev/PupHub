@@ -40,8 +40,6 @@ const ResourceListing = ({ url, linkText, text, isFirstElement, isLastElement })
     }
   };
 
-
-
   return (
     <div style={buildStyle()}>
       <a
