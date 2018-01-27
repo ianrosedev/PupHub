@@ -1,7 +1,8 @@
 const sizes = {
   small: '700px',
-  medium: '1000px',
-  large: '1200px'
+  medium: '1100px',
+  large: '1400px',
+  xLarge: '1700px'
 };
 
 export default sizes;

@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ContentCentered from './ContentCentered';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('ContentCentered', () => {
   const wrapper = shallow(
