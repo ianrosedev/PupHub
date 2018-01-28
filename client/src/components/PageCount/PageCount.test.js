@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PageCount from './PageCount';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe(`PageCount`, () => {
   let props;

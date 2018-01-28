@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -22,7 +23,12 @@ const Card = ({ name, img, isAdoptionPending, onClick }) => {
       backgroundColor: colors.primaryLightest,
       boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.3)',
       overflow: 'hidden',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      [`@media (max-width: ${sizes.small})`]: {
+        width: 300,
+        height: 'auto',
+        margin: '0 0 40px 0'
+      }
     },
     imgContainer: {
       width: 200,
@@ -30,11 +36,18 @@ const Card = ({ name, img, isAdoptionPending, onClick }) => {
       backgroundColor: 'black',
       borderRadius: '5px 5px 0 0',
       overflow: 'hidden',
-      textAlign: 'center'
+      textAlign: 'center',
+      [`@media (max-width: ${sizes.small})`]: {
+        width: 300,
+        height: 300
+      }
     },
     img: {
       width: 'auto',
-      height: 200
+      height: 200,
+      [`@media (max-width: ${sizes.small})`]: {
+        height: 300
+      }
     },
     name: {
       margin: 0,

@@ -1,10 +1,14 @@
 import React from 'react';
 import Radium from 'radium';
+import sizes from '../../media/styles/sizes';
 
 const PageCount = ({ activePage, lastPage }) => {
   const style = {
     base: {
-      margin: '-4vh 0 8vh 0'
+      margin: '-4vh 0 8vh 0',
+      [`@media (max-width: ${sizes.medium})`]: {
+        margin: '0 0 8vh 0'
+      }
     }
   };
 

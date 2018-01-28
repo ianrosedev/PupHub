@@ -8,6 +8,7 @@ import { PortalWithState } from 'react-portal';
 import Modal from '../Modal/Modal';
 import Spinner from '../Spinner/Spinner';
 import Radium from 'radium';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -24,7 +25,11 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
     base: {
       display: 'flex',
       justifyContent: 'space-between',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      [`@media (max-width: ${sizes.small})`]: {
+        justifyContent: 'center',
+        margin: 20
+      }
     }
   };
 

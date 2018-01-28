@@ -30,7 +30,6 @@ class NavBar extends Component {
         li: {
           display: 'inline-block',
           marginRight: '2vw',
-
           [`@media (max-width: ${sizes.small})`]: {
             margin: 0,
             padding: 5,

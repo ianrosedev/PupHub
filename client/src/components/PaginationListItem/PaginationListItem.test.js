@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PaginationListItem from './PaginationListItem';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('PaginationListItem', () => {
   let props;

@@ -1,6 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Card from './Card';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('Card', () => {
   let props;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   pageText: PropTypes.oneOfType([
@@ -48,6 +49,9 @@ const PaginationListItem = ({
       cursor: (isDisabled || isActive) ? 'default' : 'pointer',
       ':hover': {
         backgroundColor: colors.secondary
+      },
+      [`@media (max-width: ${sizes.small})`]: {
+        padding: '6px 10px'
       },
       isFirstElement: {
         borderRadius: '4px 0 0 4px',

@@ -32,13 +32,14 @@ export const SearchForm = ({
       [`@media (max-width: ${sizes.medium})`]: {
         float: 'none',
         width: '100%'
-      },
+      }
     },
     searchOptions: {
       display: 'flex',
       alignItems: 'flex-start',
       [`@media (max-width: ${sizes.small})`]: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        fontSize: 18
       },
       marginTop: 5,
       block: {

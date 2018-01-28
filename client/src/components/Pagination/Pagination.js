@@ -33,7 +33,8 @@ const Pagination = ({
     base: {
       display: 'block',
       marginTop: '4vh',
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: 0
     }
   };
 
