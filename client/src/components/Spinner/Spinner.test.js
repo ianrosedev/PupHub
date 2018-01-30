@@ -8,7 +8,7 @@ describe('Spinner', () => {
 
   beforeEach(() => {
     props = {
-      isOpen: true
+      isSearchOpen: true
     };
 
     wrapper = shallow(<Spinner {...props} />);

@@ -4,16 +4,16 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
 const propTypes = {
-  isOpen: PropTypes.bool.isRequired
+  isSearchOpen: PropTypes.bool.isRequired
 };
 
-const Spinner = ({ isOpen }) => {
+const Spinner = ({ isSearchOpen }) => {
   const style = {
     base: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: isOpen ? '38vh' : '88vh'
+      height: isSearchOpen ? '38vh' : '88vh'
     },
     i: {
       color: colors.secondaryDark,
