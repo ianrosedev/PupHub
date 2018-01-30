@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 import SearchFormContainer from '../../containers/SearchFormContainer/SearchFormContainer';
 import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
@@ -53,6 +54,14 @@ const SearchArea = ({
     distance: '25'
   };
 
+  // Passed in to SearchForm instead of
+  // declared inside beacuse re-renders
+  // stop debounce from working correctly
+  const handleFieldChange = debounce(() => {
+    setActivePage(1);
+    searchDataFetch();
+  }, 1500);
+
   return (
     <div style={style.base}>
       <div style={style.content}>
@@ -60,6 +69,7 @@ const SearchArea = ({
           initialValues={formInitialValues}
           distance={distance}
           setMapOptions={setMapOptions}
+          handleFieldChange={handleFieldChange}
           setActivePage={setActivePage}
           searchDataFetch={searchDataFetch}
         />

@@ -53,6 +53,7 @@ describe('SearchForm', () => {
       clearSubmit: jest.fn(),
       // custom
       setMapOptions: jest.fn(),
+      handleFieldChange: jest.fn(),
       setActivePage: jest.fn(),
       searchDataFetch: jest.fn(),
     };

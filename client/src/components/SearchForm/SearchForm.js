@@ -10,6 +10,7 @@ import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   setMapOptions: PropTypes.func.isRequired,
+  handleFieldChange: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired,
   ...reduxFormPropTypes
@@ -21,6 +22,7 @@ export const SearchForm = ({
   goodWith,
   distance,
   setMapOptions,
+  handleFieldChange,
   setActivePage,
   searchDataFetch
 }) => {
@@ -72,11 +74,6 @@ export const SearchForm = ({
         fontSize: 18
       }
     }
-  };
-
-  const handleFieldChange = () => {
-    setActivePage(1);
-    searchDataFetch();
   };
 
   return (
