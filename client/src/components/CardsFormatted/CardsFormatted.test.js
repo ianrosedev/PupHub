@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CardsFormatted from './CardsFormatted';
-import Spinner from '../Spinner/Spinner';
+import SpinnerContainer from '../../containers/SpinnerContainer/SpinnerContainer';
 import Radium, { StyleRoot } from 'radium';
 
 // Stops StyleRoot error
@@ -13,7 +13,6 @@ describe('CardsFormatted', () => {
 
   beforeEach(() => {
     props = {
-      isOpen: true,
       isFetching: false,
       isError: false,
       searchResults: null
@@ -46,7 +45,7 @@ describe('CardsFormatted', () => {
     props.isFetching = true;
     wrapper = shallow(<CardsFormatted {...props} />);
 
-    expect(wrapper.contains(<Spinner isOpen={props.isOpen} />)).toBe(true);
+    expect(wrapper.contains(<SpinnerContainer />)).toBe(true);
   });
 
   it('if isError is `true` shows error text', () => {

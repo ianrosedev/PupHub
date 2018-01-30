@@ -7,8 +7,6 @@ import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 class Home extends Component {
-  handleWindowResize = throttle(() => this.forceUpdate(), 50);
-
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
   }
@@ -16,6 +14,8 @@ class Home extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleWindowResize);
   }
+
+  handleWindowResize = throttle(() => this.forceUpdate(), 50);
 
   render() {
     const style = {

@@ -6,12 +6,11 @@ import PageCountContainer from '../../containers/PageCountContainer/PageCountCon
 import PaginationContainer from '../../containers/PaginationContainer/PaginationContainer';
 import { PortalWithState } from 'react-portal';
 import Modal from '../Modal/Modal';
-import Spinner from '../Spinner/Spinner';
+import SpinnerContainer from '../../containers/SpinnerContainer/SpinnerContainer';
 import Radium from 'radium';
 import sizes from '../../media/styles/sizes';
 
 const propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   searchResults: PropTypes.oneOfType([
@@ -20,7 +19,7 @@ const propTypes = {
   ])
 };
 
-const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
+const CardsFormatted = ({ isFetching, isError, searchResults }) => {
   const style = {
     base: {
       display: 'flex',
@@ -49,7 +48,6 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
             <PortalWithState
               key={'portal' + key}
               node={document.getElementById('portal')}
-              closeOnEsc
             >
               {({ openPortal, closePortal, portal }) => {
                 const individualResult = searchResults[key];
@@ -81,7 +79,7 @@ const CardsFormatted = ({ isOpen, isFetching, isError, searchResults }) => {
     );
   } else if (isFetching) {
     return (
-      <Spinner isOpen={isOpen} />
+      <SpinnerContainer />
     );
   } else if (isError) {
     return (
