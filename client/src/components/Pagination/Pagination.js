@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import paginator from 'paginator';
 import PaginationListItem from '../PaginationListItem/PaginationListItem';
@@ -20,97 +20,99 @@ const defaultProps = {
   activePage: 1
 };
 
-const Pagination = ({
-  totalItemsCount,
-  itemsCountPerPage,
-  activePage,
-  pageRangeDisplayed,
-  setActivePage,
-  setLastPage,
-  searchDataFetch
-}) => {
-  const style = {
-    base: {
-      display: 'block',
-      marginTop: '4vh',
-      textAlign: 'center',
-      padding: 0
-    }
-  };
+class Pagination extends Component {
+  componentWillMount() {
+    this.paginationInfo = new paginator(this.props.itemsCountPerPage, this.props.pageRangeDisplayed)
+      .build(this.props.totalItemsCount, this.props.activePage);
 
-  const buildPages = () => {
-    const pages = [];
+    this.props.setLastPage(this.paginationInfo.total_pages);
+  }
 
-    const paginationInfo = new paginator(itemsCountPerPage, pageRangeDisplayed)
-      .build(totalItemsCount, activePage);
+  render() {
+    const {
+      activePage,
+      setActivePage,
+      searchDataFetch
+    } = this.props;
 
-    setLastPage(paginationInfo.total_pages);
+    const style = {
+      base: {
+        display: 'block',
+        marginTop: '4vh',
+        padding: 0,
+        textAlign: 'center'
+      }
+    };
 
-    for (let i = paginationInfo.first_page; i <= paginationInfo.last_page; i++) {
-      pages.push(
+    const buildPages = () => {
+      const pages = [];
+
+      for (let i = this.paginationInfo.first_page; i <= this.paginationInfo.last_page; i++) {
+        pages.push(
+          <PaginationListItem
+            key={'page' + i}
+            pageNumber={i}
+            pageText={String(i)}
+            isActive={(i === activePage) ? true : false}
+            setActivePage={setActivePage}
+            searchDataFetch={searchDataFetch}
+          />
+        );
+      }
+
+      pages.unshift(
         <PaginationListItem
-          key={'page' + i}
-          pageNumber={i}
-          pageText={String(i)}
-          isActive={(i === activePage) ? true : false}
+          key={'prev' + this.paginationInfo.previous_page}
+          pageNumber={this.paginationInfo.previous_page}
+          pageText='⟨'
+          isDisabled={!this.paginationInfo.has_previous_page}
           setActivePage={setActivePage}
           searchDataFetch={searchDataFetch}
         />
       );
-    }
 
-    pages.unshift(
-      <PaginationListItem
-        key={'prev' + paginationInfo.previous_page}
-        pageNumber={paginationInfo.previous_page}
-        pageText='⟨'
-        isDisabled={!paginationInfo.has_previous_page}
-        setActivePage={setActivePage}
-        searchDataFetch={searchDataFetch}
-      />
+      pages.unshift(
+        <PaginationListItem
+          key='first'
+          pageNumber={1}
+          pageText='First'
+          isDisabled={!this.paginationInfo.has_previous_page}
+          isFirstElement
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
+        />
+      );
+
+      pages.push(
+        <PaginationListItem
+          key={'next' + this.paginationInfo.next_page}
+          pageNumber={this.paginationInfo.next_page}
+          pageText='⟩'
+          isDisabled={!this.paginationInfo.has_next_page}
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
+        />
+      );
+
+      pages.push(
+        <PaginationListItem
+          key='last'
+          pageNumber={this.paginationInfo.total_pages}
+          pageText='Last'
+          isDisabled={this.paginationInfo.current_page === this.paginationInfo.total_pages}
+          isLastElement
+          setActivePage={setActivePage}
+          searchDataFetch={searchDataFetch}
+        />
+      );
+
+      return pages;
+    };
+
+    return (
+      <ul style={style.base}>{buildPages()}</ul>
     );
-
-    pages.unshift(
-      <PaginationListItem
-        key='first'
-        pageNumber={1}
-        pageText='First'
-        isDisabled={!paginationInfo.has_previous_page}
-        isFirstElement
-        setActivePage={setActivePage}
-        searchDataFetch={searchDataFetch}
-      />
-    );
-
-    pages.push(
-      <PaginationListItem
-        key={'next' + paginationInfo.next_page}
-        pageNumber={paginationInfo.next_page}
-        pageText='⟩'
-        isDisabled={!paginationInfo.has_next_page}
-        setActivePage={setActivePage}
-        searchDataFetch={searchDataFetch}
-      />
-    );
-
-    pages.push(
-      <PaginationListItem
-        key='last'
-        pageNumber={paginationInfo.total_pages}
-        pageText='Last'
-        isDisabled={paginationInfo.current_page === paginationInfo.total_pages}
-        isLastElement
-        setActivePage={setActivePage}
-        searchDataFetch={searchDataFetch}
-      />
-    );
-
-    return pages;
-  };
-
-  return (
-    <ul style={style.base}>{buildPages()}</ul>
-  );
+  }
 }
 
 Pagination.propTypes = propTypes;
