@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { throttle } from 'underscore';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import { Link } from 'react-router-dom';
 import Radium from 'radium';
@@ -6,7 +7,7 @@ import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 class Home extends Component {
-  handleWindowResize = () => this.forceUpdate();
+  handleWindowResize = throttle(() => this.forceUpdate(), 50);
 
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
@@ -36,9 +37,9 @@ class Home extends Component {
         [`@media (max-width: ${sizes.medium})`]: {
           float: 'none',
           display: 'block',
-          width: '92vw',
+          width: '100%',
           maxWidth: 'none',
-          margin: '0 auto 20px auto',
+          margin: '0 0 20px 0',
         },
       },
       h1: {
