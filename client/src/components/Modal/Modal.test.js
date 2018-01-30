@@ -3,6 +3,10 @@ import { shallow } from 'enzyme';
 import Modal from './Modal';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import { Carousel } from 'react-responsive-carousel';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('Modal', () => {
   let props;

@@ -3,8 +3,9 @@ import { PropTypes } from 'prop-types';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import { Carousel } from 'react-responsive-carousel';
 import Radium from 'radium';
-import colors from '../../media/styles/colors';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import colors from '../../media/styles/colors';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   individualResult: PropTypes.object.isRequired,
@@ -28,7 +29,15 @@ const Modal = ({ individualResult, closePortal }) => {
       width: '80%',
       height: '90%',
       backgroundColor: 'white',
-      overflow: 'auto'
+      overflow: 'auto',
+      [`@media (max-width: ${sizes.medium})`]: {
+        width: '90%',
+        height: '96%'
+      },
+      [`@media (max-width: ${sizes.small})`]: {
+        width: '100%',
+        height: '100%'
+      }
     },
     topBar: {
       width: '100%',
@@ -52,7 +61,13 @@ const Modal = ({ individualResult, closePortal }) => {
       width: 570,
       margin: '30px auto 0 auto',
       borderRadius: 7,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      [`@media (max-width: ${sizes.medium})`]: {
+        width: 500
+      },
+      [`@media (max-width: ${sizes.small})`]: {
+        width: '88%'
+      }
     },
     imgContainer: {
       width: 'auto',
