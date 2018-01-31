@@ -21,38 +21,32 @@ class Home extends Component {
     const style = {
       image: {
         float: 'right',
-        display: 'inline-block',
         width: '40vw',
         maxWidth: 500,
-        height: 'inherit',
-        margin: ' 0 0 4vh 3vw',
+        margin: '0 0 4vh 3vw',
         borderRadius: 7,
         [`@media (min-width: ${sizes.xLarge})`]: {
           maxWidth: 600
         },
         [`@media (max-width: ${sizes.large})`]: {
           width: '36vw',
-          marginLeft: 0,
+          margin: '0 0 0 3vw',
         },
         [`@media (max-width: ${sizes.medium})`]: {
           float: 'none',
-          display: 'block',
           width: '100%',
           maxWidth: 'none',
           margin: '0 0 20px 0',
         },
       },
       h1: {
-        display: 'inline-block',
         backgroundColor: colors.lightGray,
-        width: '44vw',
         margin: '0 0 2vh 0',
         padding: 30,
         borderRadius: 7,
         fontFamily: 'Roboto, sans-serif',
         lineHeight: 1.25,
         [`@media (max-width: ${sizes.medium})`]: {
-          display: 'block',
           margin: '0 0 3vh 0',
           width: 'inherit'
         },
@@ -62,10 +56,8 @@ class Home extends Component {
       },
       section: {
         width: '49vw',
-        marginTop: '4vh',
         fontSize: 20,
         [`@media (max-width: ${sizes.medium})`]: {
-          display: 'block',
           width: 'inherit',
           textAlign: 'center'
         }
@@ -92,7 +84,6 @@ class Home extends Component {
 
     return (
       <ContentCentered>
-        <h1 style={style.h1}>Thousands of dogs are in need of a forever home. Find one near you that matches your family's needs.</h1>
         <img
           style={style.image}
           src={window.innerWidth < Number(sizes.medium.slice(0, -2)) ?
@@ -102,6 +93,7 @@ class Home extends Component {
           alt='Cute puppy'
         />
         <div style={style.section}>
+          <h1 style={style.h1}>Thousands of dogs are in need of a forever home. Find one near you that matches your family's needs.</h1>
           <p style={style.p}>With PupHub you can search through thousands of listings to find the perfect dog for you. Our handy search tool makes easy to find a dog matches your needs.</p>
           <Link
             style={style.link.fancy}
