@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import handleWindowResize from './handleWindowResize';
+import scrollToTopOnMount from './scrollToTopOnMount';
 
-describe(`handleWindowResize`, () => {
+describe(`scrollToTopOnMount`, () => {
   const MockComponent = () => <div>Foo</div>;
-  const WithHOC = handleWindowResize(MockComponent);
+  const WithHOC = scrollToTopOnMount(MockComponent);
   const wrapper = shallow(<WithHOC />);
 
   it('renders without crashing', () => {

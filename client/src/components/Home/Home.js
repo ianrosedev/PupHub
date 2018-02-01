@@ -1,4 +1,5 @@
 import React from 'react';
+import scrollToTopOnMount from '../../hocs/scrollToTopOnMount/scrollToTopOnMount';
 import handleWindowResize from '../../hocs/handleWindowResize/handleWindowResize';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import { Link } from 'react-router-dom';
@@ -104,4 +105,4 @@ export const Home = () => {
   );
 };
 
-export default Radium(handleWindowResize(Home));
+export default Radium(scrollToTopOnMount(handleWindowResize(Home)));

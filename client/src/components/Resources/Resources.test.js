@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Resources from './Resources';
+import { Resources } from './Resources';
 import ResourceListing from '../ResourceListing/ResourceListing';
 
 describe('Resources', () => {

@@ -1,10 +1,11 @@
 import React from 'react';
+import scrollToTopOnMount from '../../hocs/scrollToTopOnMount/scrollToTopOnMount';
 import ContentCentered from '../ContentCentered/ContentCentered';
 import ResourceListing from '../ResourceListing/ResourceListing';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 
-const Resources = () => {
+export const Resources = () => {
   const style = {
     heading: {
       backgroundColor: colors.lightGray,
@@ -60,4 +61,4 @@ const Resources = () => {
   );
 };
 
-export default Radium(Resources);
+export default Radium(scrollToTopOnMount(Resources));

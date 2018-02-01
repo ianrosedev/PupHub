@@ -1,9 +1,10 @@
 import React from 'react';
+import scrollToTopOnMount from '../../hocs/scrollToTopOnMount/scrollToTopOnMount';
 import SearchAreaContainer from '../../containers/SearchAreaContainer/SearchAreaContainer';
 import CardsFormattedContainer from '../../containers/CardsFormattedContainer/CardsFormattedContainer';
 import ContentCentered from '../ContentCentered/ContentCentered';
 
-const Search = () => {
+export const Search = () => {
   // Make sure Google Maps API is loaded
   if (!window.google) {
     return (
@@ -21,4 +22,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default scrollToTopOnMount(Search);

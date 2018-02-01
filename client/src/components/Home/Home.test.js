@@ -3,9 +3,6 @@ import { shallow } from 'enzyme';
 import { Home } from './Home';
 import Radium from 'radium';
 
-// Stops StyleRoot error
-Radium.TestMode.enable();
-
 describe('Home', () => {
   const wrapper = shallow(<Home />);
 
