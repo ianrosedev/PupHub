@@ -48,7 +48,7 @@ const Resources = () => {
       <ResourceListing
         url='https://www.petcofoundation.org/put-your-love-into-action/learn-about-adoption'
         linkText='Petco Foundation'
-        text='Every day, you can adopt a pet in a Petco store. We help find homes for thousands of dogs, cats, rabbits and other pets every week. Search Online or Come In'
+        text='Every day, you can adopt a pet in a Petco store. We help find homes for thousands of dogs, cats, rabbits and other pets every week. Search Online or Come In.'
       />
       <ResourceListing
         url='https://www.petsmart.com/adoption/people-saving-pets/ca-adoption-landing.html'

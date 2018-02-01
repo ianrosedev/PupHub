@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import handleWindowResize from '../../hocs/handleWindowResize/handleWindowResize';
 import paginator from 'paginator';
 import PaginationListItem from '../PaginationListItem/PaginationListItem';
 import Radium from 'radium';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   totalItemsCount: PropTypes.number.isRequired,
   itemsCountPerPage: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
-  pageRangeDisplayed: PropTypes.number.isRequired,
   setActivePage: PropTypes.func.isRequired,
   setLastPage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
@@ -16,17 +17,23 @@ const propTypes = {
 
 const defaultProps = {
   itemsCountPerPage: 20,
-  pageRangeDisplayed: 5,
   activePage: 1
 };
 
-class Pagination extends Component {
+export class Pagination extends Component {
   componentWillMount() {
-    this.paginationInfo = new paginator(this.props.itemsCountPerPage, this.props.pageRangeDisplayed)
-      .build(this.props.totalItemsCount, this.props.activePage);
-
+    this.setPaginationInfo();
     this.props.setLastPage(this.paginationInfo.total_pages);
   }
+
+  componentDidUpdate() {
+    this.setPaginationInfo();
+  }
+
+  setPaginationInfo = () => (
+    this.paginationInfo = new paginator(this.props.itemsCountPerPage, (window.innerWidth < Number(sizes.small.slice(0, -2))) ? 3 : 5)
+      .build(this.props.totalItemsCount, this.props.activePage)
+  );
 
   render() {
     const {
@@ -37,7 +44,6 @@ class Pagination extends Component {
 
     const style = {
       base: {
-        display: 'block',
         marginTop: '4vh',
         padding: 0,
         textAlign: 'center'
@@ -118,4 +124,4 @@ class Pagination extends Component {
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
 
-export default Radium(Pagination);
+export default Radium(handleWindowResize(Pagination));
