@@ -29,7 +29,7 @@ export const SearchForm = ({
   const style = {
     base: {
       float: 'left',
-      width: '55%',
+      width: '56%',
       marginRight: '5vw',
       [`@media (max-width: ${sizes.medium})`]: {
         float: 'none',
@@ -37,38 +37,42 @@ export const SearchForm = ({
       }
     },
     searchOptions: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      [`@media (max-width: ${sizes.small})`]: {
-        flexDirection: 'column',
-        fontSize: 18
-      },
-      marginTop: 5,
-      block: {
-        margin: '2vh 5vw 2vh 0',
+      base: {
+        display: 'flex',
+        alignItems: 'flex-start',
+        margin: '3vh 0',
         [`@media (max-width: ${sizes.small})`]: {
-          margin: '1vh 1vw'
-        },
-        padding: 5
+          flexDirection: 'column',
+          fontSize: 18
+        }
+      },
+      block: {
+        marginRight: '4vw',
+        [`@media (max-width: ${sizes.small})`]: {
+          margin: '1vh 0'
+        }
       },
       h3: {
-        display: 'block',
         textDecoration: 'underline',
-        margin: '0 0 5px 0',
+        margin: '0 0 8px 0',
         padding: 0
       },
-      span: {
+      field: {
         display: 'block',
-        marginBottom: 5
+        margin: '0 10px 8px 0',
+        [`@media (max-width: ${sizes.small})`]: {
+          display: 'inline-block'
+        }
       }
     },
     error: {
       border: {
         border: `1px solid ${colors.warning}`,
-        borderRadius: 5
+        borderRadius: 5,
+        padding: 10
       },
       text: {
-        display:'block',
+        display: 'block',
         padding: '4px 0',
         color: colors.warning,
         fontSize: 18
@@ -78,6 +82,7 @@ export const SearchForm = ({
 
   return (
     <form style={style.base}>
+      {/* Search Bar */}
       <Field
         name='location'
         component={SearchBar}
@@ -92,134 +97,134 @@ export const SearchForm = ({
         setActivePage={setActivePage}
         searchDataFetch={searchDataFetch}
       />
-      <div style={style.searchOptions}>
-        <div
-          style={(sex && sex.length > 0) ?
-            style.searchOptions.block :
-            {
-              ...style.searchOptions.block,
-              ...style.error.border
-            }
+      <div style={style.searchOptions.base}>
+        {/* Sex */}
+        <div style={(sex && sex.length > 0) ?
+          style.searchOptions.block :
+          {
+            ...style.searchOptions.block,
+            ...style.error.border
           }
-          onChange={handleFieldChange}
-        >
+        }>
           <h3 style={style.searchOptions.h3}>Sex</h3>
-          {['Male', 'Female'].map((item) => (
+          <div onChange={handleFieldChange}>
+            {['Male', 'Female'].map((item) => (
+              <span
+                key={'sex' + item}
+                style={style.searchOptions.field}
+              >
+                <Field
+                  name='sex'
+                  component={CheckboxArray}
+                  itemValue={item}
+                />
+                {' ' + item }
+              </span>
+            ))}
             <span
-              key={'sex' + item}
-              style={style.searchOptions.span}
+              style={(sex && sex.length > 0) ?
+                { display: 'none' } :
+                style.error.text
+              }
             >
-              <Field
-                name='sex'
-                component={CheckboxArray}
-                itemValue={item}
-              />
-              {' ' + item + ' '}
+              Required Field!
             </span>
-          ))}
-          <span
-            style={(sex && sex.length > 0) ?
-              { display: 'none' } :
-              style.error.text
-            }
-          >
-            Required Field!
-          </span>
+          </div>
         </div>
-        <div
-          style={(age && age.length > 0) ?
-            style.searchOptions.block :
-            {
-              ...style.searchOptions.block,
-              ...style.error.border
-            }
+        {/* Age */}
+        <div style={(age && age.length > 0) ?
+          style.searchOptions.block :
+          {
+            ...style.searchOptions.block,
+            ...style.error.border
           }
-          onChange={handleFieldChange}
-        >
+        }>
           <h3 style={style.searchOptions.h3}>Age</h3>
-          {['Baby', 'Young', 'Adult', 'Senior'].map((item) => (
+          <div onChange={handleFieldChange}>
+            {['Baby', 'Young', 'Adult', 'Senior'].map((item) => (
+              <span
+                key={'age' + item}
+                style={style.searchOptions.field}
+              >
+                <Field
+                  name='age'
+                  component={CheckboxArray}
+                  itemValue={item}
+                />
+                {' ' + item}
+              </span>
+            ))}
             <span
-              key={'age' + item}
-              style={style.searchOptions.span}
+              style={(age && age.length > 0) ?
+                { display: 'none' } :
+                style.error.text
+              }
             >
-              <Field
-                name='age'
-                component={CheckboxArray}
-                itemValue={item}
-              />
-              {' ' + item + ' '}
+              Required Field!
             </span>
-          ))}
-          <span
-            style={(age && age.length > 0) ?
-              { display: 'none' } :
-              style.error.text
-            }
-          >
-            Required Field!
-          </span>
+          </div>
         </div>
-        <div
-          style={(goodWith && goodWith.length > 0) ?
-            style.searchOptions.block :
-            {
-              ...style.searchOptions.block,
-              ...style.error.border
-            }
+        {/* Good With */}
+        <div style={(goodWith && goodWith.length > 0) ?
+          style.searchOptions.block :
+          {
+            ...style.searchOptions.block,
+            ...style.error.border
           }
-          onChange={handleFieldChange}
-        >
+        }>
           <h3 style={style.searchOptions.h3}>Good With</h3>
-          {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
+          <div onChange={handleFieldChange}>
+            {['Show All', 'Kids', 'Dogs', 'Cats'].map((item) => (
+              <span
+                key={'goodWith' + item}
+                style={style.searchOptions.field}
+              >
+                <Field
+                  name='goodWith'
+                  component={CheckboxArray}
+                  itemValue={item}
+                />
+                {' ' + item}
+              </span>
+            ))}
             <span
-              key={'goodWith' + item}
-              style={style.searchOptions.span}
+              style={(goodWith && goodWith.length > 0) ?
+                { display: 'none' } :
+                style.error.text
+              }
             >
-              <Field
-                name='goodWith'
-                component={CheckboxArray}
-                itemValue={item}
-              />
-              {' ' + item + ' '}
+              Required Field!
             </span>
-          ))}
-          <span
-            style={(goodWith && goodWith.length > 0) ?
-              { display: 'none' } :
-              style.error.text
-            }
-          >
-            Required Field!
-          </span>
+          </div>
         </div>
-        <div
-          style={style.searchOptions.block}
-          onChange={handleFieldChange}
-        >
+        {/* Max Distance */}
+        <div style={style.searchOptions.block}>
           <h3 style={style.searchOptions.h3}>Max Distance</h3>
-          {['10', '25', '50', '100'].map((item) => (
-            <span
-              key={'distance' + item}
-              style={style.searchOptions.span}
-            >
-              <Field
-                name='distance'
-                component='input'
-                type='radio'
-                value={item}
-                onChange={() => setMapOptions({
-                  zoom: (
-                    item === '10' ? 10 :
-                    item === '25' ? 9 :
-                    item === '50' ? 8 :
-                    7
-                  ),
-                  isMarkerShown: true
-                })}
-              />
-              {' ' + item + ' Miles '}
-            </span>
-          ))}
+          <div onChange={handleFieldChange}>
+            {['10', '25', '50', '100'].map((item) => (
+              <span
+                key={'distance' + item}
+                style={style.searchOptions.field}
+              >
+                <Field
+                  name='distance'
+                  component='input'
+                  type='radio'
+                  value={item}
+                  onChange={() => setMapOptions({
+                    zoom: (
+                      item === '10' ? 10 :
+                      item === '25' ? 9 :
+                      item === '50' ? 8 :
+                      7
+                    ),
+                    isMarkerShown: true
+                  })}
+                />
+                {' ' + item + ' Miles'}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </form>
