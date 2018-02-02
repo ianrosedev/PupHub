@@ -13,13 +13,11 @@ app.use(helmet());
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-/*** For production use ***
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
-*/
 
 app.post('/search/general', (req, res) => {
   const buildNewRequest = (searchSettings) => {
