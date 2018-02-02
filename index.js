@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import compression from 'compression';
 import requestPromise from 'request-promise-native';
 import zips from 'zips';
-const rescueGroupsKey = require('./keys');
 
 const app = express();
 
@@ -35,7 +34,7 @@ app.post('/search/general', (req, res) => {
     };
 
     const body = {
-      apikey: rescueGroupsKey,
+      apikey: '66Rwkc8a',
       objectType: 'animals',
       objectAction: 'publicSearch',
       search: {
