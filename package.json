@@ -2,9 +2,12 @@
   "name": "PupHub",
   "version": "0.1.0",
   "description": "Find rescue dogs near you",
-  "main": "index.js",
   "author": "Ian Rose",
   "license": "ISC",
+  "main": "index.js",
+  "engines": {
+    "node": "^9.5.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ianrosedev/PupHub.git"
