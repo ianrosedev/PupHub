@@ -23,7 +23,8 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "request": "^2.83.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "zips": "^1.1.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",

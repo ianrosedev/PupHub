@@ -64,7 +64,7 @@ export const searchDataFetch = () => {
 
     const searchSettings = {
       activePage,
-      zipcode: formValues.locationZip,
+      locationCoords: formValues.locationCoords,
       sex: formValues.sex,
       age: formValues.age,
       goodWith: formValues.goodWith,

@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import compression from 'compression';
 import requestPromise from 'request-promise-native';
+import zips from 'zips';
 import { rescueGroupsKey } from './keys';
 
 const app = express();
@@ -22,7 +23,7 @@ app.get('*', (req, res) => {
 
 app.post('/search/general', (req, res) => {
   const buildNewRequest = (searchSettings) => {
-    const { activePage, zipcode, sex, age, goodWith, distance } = searchSettings;
+    const { activePage, locationCoords, sex, age, goodWith, distance } = searchSettings;
 
     const request = {
       method: 'POST',
@@ -58,7 +59,7 @@ app.post('/search/general', (req, res) => {
           {
             fieldName: 'animalLocation',
             operation: 'equals',
-            criteria: zipcode
+            criteria: zips.getByLocation(locationCoords.lat, locationCoords.lng).zip
           },
           {
             fieldName: 'animalLocationDistance',

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { change } from 'redux-form';
-import zips from 'zips';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
@@ -90,12 +89,6 @@ class SearchBar extends Component {
         // Dispatch coordinates
         dispatch(change('searchForm', 'locationCoords', { lat, lng }));
 
-        // Dispatch zipcode
-        dispatch(change('searchForm', 'locationZip', zips.getByLocation(
-          lat,
-          lng
-        ).zip));
-
         // Fetch data
         setMapOptions({
           zoom: (
@@ -134,7 +127,7 @@ class SearchBar extends Component {
               isFindingPosition: false
             });
           } else {
-            return this.handleError();
+            return this.locationError();
           }
         }
       );
