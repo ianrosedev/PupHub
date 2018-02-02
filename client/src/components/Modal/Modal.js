@@ -91,13 +91,19 @@ class Modal extends Component {
           width: 500
         },
         [`@media (max-width: ${sizes.small})`]: {
-          width: '88%'
+          width: '88vw'
+        },
+        [`@media screen and (max-width: ${sizes.small}) and (orientation: landscape)`]: {
+          width: '70vw'
         }
       },
       imgContainer: {
         width: 'auto',
         height: '40vh',
-        margin: '10px auto 35px auto'
+        margin: '10px auto 35px auto',
+        [`@media screen and (max-width: ${sizes.small}) and (orientation: landscape)`]: {
+          height: '70vh'
+        }
       },
       img: {
         height: 'inherit',
@@ -105,14 +111,20 @@ class Modal extends Component {
       },
       h1: {
         margin: '20px 0 0 0',
-        paddingBottom: 5,
+        paddingBottom: 10,
         fontFamily: 'Roboto',
         textAlign: 'center'
       },
       listContainer: {
         display: 'flex',
         justifyContent: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        [`@media (max-width: ${sizes.small})`]: {
+          display: 'block'
+        },
+        [`@media screen and (max-width: ${sizes.small}) and (orientation: landscape)`]: {
+          marginLeft: '10vw'
+        }
       },
       list: {
         margin: '0 25px',

@@ -39,12 +39,12 @@ export const Resources = () => {
       <ResourceListing
         url='https://www.adoptapet.com'
         linkText='Adopt-a-Pet'
-        text="Adopt-a-Pet is North America's largest non-profit pet adoption website"
+        text="Adopt-a-Pet is North America's largest non-profit pet adoption website."
       />
       <ResourceListing
         url='https://bestfriends.org'
         linkText='Best Friends Animal Society'
-        text='Best Friends is nationwide animal rescue and advocacy organization, with spay neuter, TNR (trap neuter return), pet adoption and no-kill programs.'
+        text='Best Friends is a nationwide animal rescue and advocacy organization, with spay neuter, TNR (trap neuter return), pet adoption and no-kill programs.'
       />
       <ResourceListing
         url='https://www.petcofoundation.org/put-your-love-into-action/learn-about-adoption'

@@ -29,6 +29,14 @@ export const Home = () => {
         margin: '0 0 20px 0',
       },
     },
+    section: {
+      width: '49vw',
+      fontSize: 20,
+      [`@media (max-width: ${sizes.medium})`]: {
+        width: 'inherit',
+        textAlign: 'center'
+      }
+    },
     h1: {
       backgroundColor: colors.lightGray,
       margin: '0 0 2vh 0',
@@ -44,13 +52,8 @@ export const Home = () => {
         padding: 15
       }
     },
-    section: {
-      width: '49vw',
-      fontSize: 20,
-      [`@media (max-width: ${sizes.medium})`]: {
-        width: 'inherit',
-        textAlign: 'center'
-      }
+    block: {
+      margin: '4vh 0'
     },
     p: {
       marginBottom: 10,
@@ -64,7 +67,7 @@ export const Home = () => {
         display: 'inline-block',
         textDecoration: 'none',
         background: `linear-gradient(${colors.primary}, ${colors.primaryDark})`,
-        marginBottom: 10,
+
         padding: '3px 8px',
         borderRadius: 5,
         color: 'white'
@@ -84,20 +87,24 @@ export const Home = () => {
       />
       <div style={style.section}>
         <h1 style={style.h1}>Thousands of dogs are in need of a forever home. Find one near you that matches your family's needs.</h1>
-        <p style={style.p}>With PupHub you can search through thousands of listings to find the perfect dog for you. Our handy search tool makes easy to find a dog matches your needs.</p>
-        <Link
-          style={style.link.fancy}
-          to='/search'
-        >
-          Search
-        </Link>
-        <p style={style.p}>Unfortunately, this listing is just a small portion of the dogs that need a home. Check out our resources page to find out more about other organizations that help dogs in need.</p>
-        <Link
-          style={style.link.fancy}
-          to='/resources'
-        >
-          Resources
-        </Link>
+        <div style={style.block}>
+          <p style={style.p}>With PupHub you can search through thousands of listings to find the perfect dog for you. Our handy search tool makes easy to find a dog matches your needs.</p>
+          <Link
+            style={style.link.fancy}
+            to='/search'
+          >
+            Search
+          </Link>
+        </div>
+        <div style={style.block}>
+          <p style={style.p}>Unfortunately, this listing is just a small portion of the dogs that need a home. Check out our resources page to find out more about other organizations that help dogs in need.</p>
+          <Link
+            style={style.link.fancy}
+            to='/resources'
+          >
+            Resources
+          </Link>
+        </div>
         <p>Special thanks to <a style={style.link} href='https://rescuegroups.org'>RescueGroups.org</a> for providing the data.</p>
         <p style={style.p.last}><em>*Currently only works for the U.S.</em></p>
       </div>
