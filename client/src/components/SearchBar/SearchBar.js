@@ -46,7 +46,10 @@ class SearchBar extends Component {
         borderRadius: 0,
         padding: 0,
         color: 'white',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        ':active': {
+          backgroundColor: colors.secondaryLight
+        }
       }
     },
     error: {
@@ -194,6 +197,7 @@ class SearchBar extends Component {
             style={this.style.base.button}
             type='button'
             disabled={isDisabled || this.state.isFindingPosition}
+            onClick={() => this.getGeocodeAndFetch(this.textInput.value)}
           >
             Submit
           </button>
