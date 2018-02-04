@@ -47,6 +47,9 @@ class SearchBar extends Component {
         padding: 0,
         color: 'white',
         cursor: 'pointer',
+        ':hover': {
+          backgroundColor: colors.secondaryDark
+        },
         ':active': {
           backgroundColor: colors.secondaryLight
         }
@@ -166,7 +169,7 @@ class SearchBar extends Component {
       <div style={(touched && error) ? this.style.error.border : null}>
         <div style={this.style.base}
           onKeyPress={(e) => {
-            if (e.charCode === 13) {
+            if (e.key === 'Enter' || e.charCode === 13) {
               e.stopPropagation();
               e.preventDefault();
             }
