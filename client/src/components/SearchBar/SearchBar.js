@@ -46,7 +46,13 @@ class SearchBar extends Component {
         borderRadius: 0,
         padding: 0,
         color: 'white',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        ':hover': {
+          backgroundColor: colors.secondaryDark
+        },
+        ':active': {
+          backgroundColor: colors.secondaryLight
+        }
       }
     },
     error: {
@@ -163,7 +169,7 @@ class SearchBar extends Component {
       <div style={(touched && error) ? this.style.error.border : null}>
         <div style={this.style.base}
           onKeyPress={(e) => {
-            if (e.charCode === 13) {
+            if (e.key === 'Enter' || e.charCode === 13) {
               e.stopPropagation();
               e.preventDefault();
             }
@@ -194,6 +200,7 @@ class SearchBar extends Component {
             style={this.style.base.button}
             type='button'
             disabled={isDisabled || this.state.isFindingPosition}
+            onClick={() => this.getGeocodeAndFetch(this.textInput.value)}
           >
             Submit
           </button>

@@ -47,7 +47,11 @@ const PaginationListItem = ({
       textDecoration: 'none',
       cursor: (isDisabled || isActive) ? 'default' : 'pointer',
       ':hover': {
-        backgroundColor: colors.secondary
+        backgroundColor: colors.secondaryDark,
+        color: 'white'
+      },
+      ':active': {
+        backgroundColor: colors.secondaryLight
       },
       isFirstElement: {
         borderRadius: '4px 0 0 4px',

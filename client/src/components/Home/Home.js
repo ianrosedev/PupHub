@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
+// Makes Radium work with react-router Link
+const StyledLink = Radium(Link);
 
 export const Home = () => {
   const style = {
@@ -67,10 +69,15 @@ export const Home = () => {
         display: 'inline-block',
         textDecoration: 'none',
         background: `linear-gradient(${colors.primary}, ${colors.primaryDark})`,
-
         padding: '3px 8px',
         borderRadius: 5,
-        color: 'white'
+        color: 'white',
+        ':hover': {
+          background: colors.primaryDark
+        },
+        ':active': {
+          background: colors.primary
+        }
       }
     }
   };
@@ -89,21 +96,21 @@ export const Home = () => {
         <h1 style={style.h1}>Thousands of dogs are in need of a forever home. Find one near you that matches your family's needs.</h1>
         <div style={style.block}>
           <p style={style.p}>With PupHub you can search through thousands of listings to find the perfect dog for you. Our handy search tool makes easy to find a dog matches your needs.</p>
-          <Link
+          <StyledLink
             style={style.link.fancy}
             to='/search'
           >
             Search
-          </Link>
+          </StyledLink>
         </div>
         <div style={style.block}>
           <p style={style.p}>Unfortunately, this listing is just a small portion of the dogs that need a home. Check out our resources page to find out more about other organizations that help dogs in need.</p>
-          <Link
+          <StyledLink
             style={style.link.fancy}
             to='/resources'
           >
             Resources
-          </Link>
+          </StyledLink>
         </div>
         <p>Special thanks to <a style={style.link} href='https://rescuegroups.org'>RescueGroups.org</a> for providing the data.</p>
         <p style={style.p.last}><em>*Currently only works for the U.S.</em></p>

@@ -39,6 +39,9 @@ class NavBar extends Component {
         a: {
           textDecoration: 'none',
           color: 'white'
+        },
+        active: {
+          borderBottom: '2px solid white'
         }
       },
       navWide: {
@@ -78,6 +81,7 @@ class NavBar extends Component {
         <NavLink
           exact to='/'
           style={style.base.a}
+          activeStyle={style.base.active}
         >
           Home
         </NavLink>
@@ -90,6 +94,7 @@ class NavBar extends Component {
         <NavLink
           to='/search'
           style={style.base.a}
+          activeStyle={style.base.active}
         >
           Search
         </NavLink>
@@ -102,6 +107,7 @@ class NavBar extends Component {
         <NavLink
           to='/resources'
           style={style.base.a}
+          activeStyle={style.base.active}
         >
           Resources
         </NavLink>
