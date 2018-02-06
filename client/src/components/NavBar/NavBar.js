@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import handleWindowResize from '../../hocs/handleWindowResize/handleWindowResize';
 import { NavLink } from 'react-router-dom';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
@@ -41,7 +42,8 @@ class NavBar extends Component {
           color: 'white'
         },
         active: {
-          borderBottom: '2px solid white'
+          borderBottom: (window.innerWidth > Number(sizes.small.slice(0, -2))) ?
+            '2px solid white' : 'none'
         }
       },
       navWide: {
@@ -138,4 +140,4 @@ class NavBar extends Component {
   }
 }
 
-export default Radium(NavBar);
+export default handleWindowResize(Radium(NavBar));
