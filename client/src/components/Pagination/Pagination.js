@@ -124,4 +124,4 @@ export class Pagination extends Component {
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
 
-export default Radium(handleWindowResize(Pagination));
+export default handleWindowResize(Radium(Pagination));

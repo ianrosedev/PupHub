@@ -51,7 +51,8 @@ export const Home = () => {
         width: 'inherit'
       },
       [`@media (max-width: ${sizes.small})`]: {
-        padding: 15
+        padding: 15,
+        lineHeight: 1.1
       }
     },
     block: {
@@ -119,4 +120,4 @@ export const Home = () => {
   );
 };
 
-export default Radium(scrollToTopOnMount(handleWindowResize(Home)));
+export default scrollToTopOnMount(handleWindowResize(handleWindowResize(Home)));
