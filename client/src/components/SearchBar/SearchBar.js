@@ -4,6 +4,7 @@ import { change } from 'redux-form';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   input: PropTypes.object.isRequired,
@@ -28,16 +29,22 @@ class SearchBar extends Component {
       i: {
         backgroundColor: colors.secondary,
         padding: '8px 8px 10px 8px',
-        color: 'white'
+        color: 'white',
+        [`@media (max-width: ${sizes.small})`]: {
+          display: 'none'
+        }
       },
       input: {
         width: '100%',
         border: 0,
-        padding: '0 10px',
+        padding: '0 2px 0 10px',
         // Fix rounded corners on Safari mobile
         borderRadius: 0,
         WebkitAppearance: 'none',
-
+        [`@media (max-width: ${sizes.small})`]: {
+          height: 35,
+          borderRadius: '4px 0 0 4px'
+        }
       },
       button: {
         backgroundColor: colors.secondary,
@@ -52,6 +59,9 @@ class SearchBar extends Component {
         },
         ':active': {
           backgroundColor: colors.secondaryLight
+        },
+        [`@media (max-width: ${sizes.small})`]: {
+          width: 86
         }
       }
     },

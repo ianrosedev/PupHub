@@ -27,7 +27,7 @@ const Brand = () => {
     h1: {
       display: 'inline',
       margin: '0 2px 0 0',
-      fontFamily: 'Pacifico, cursive',
+      fontFamily: 'Pacifico, sans-serif',
       fontSize: 70,
       color: 'black',
       textShadow: '-3px 4px white',
