@@ -3,6 +3,10 @@ import { shallow } from 'enzyme';
 import SearchArea from './SearchArea';
 import SearchFormContainer from '../../containers/SearchFormContainer/SearchFormContainer';
 import MapContainer from '../../containers/MapContainer/MapContainer';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('SearchArea', () => {
   let props;

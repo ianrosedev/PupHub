@@ -2,6 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import SearchBar from './SearchBar';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
+import Radium from 'radium';
+
+// Stops StyleRoot error
+Radium.TestMode.enable();
 
 describe('SearchBar', () => {
   global.google = {
