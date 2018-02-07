@@ -1,10 +1,16 @@
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
+import {
+  setMapOptions,
+  setActivePage,
+  searchDataFetch,
+  searchDataError
+} from '../../actions/actions';
 import SearchForm from '../../components/SearchForm/SearchForm';
 
 const selector = formValueSelector('searchForm');
 
-const SearchFormContainer = connect((state) => {
+const mapStateToProps = (state) => {
   const {
     sex,
     age,
@@ -18,6 +24,18 @@ const SearchFormContainer = connect((state) => {
     goodWith,
     distance
   };
-})(SearchForm);
+};
+
+const mapDispatchToProps = {
+  setMapOptions,
+  setActivePage,
+  searchDataFetch,
+  searchDataError
+};
+
+const SearchFormContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchForm);
 
 export default SearchFormContainer;

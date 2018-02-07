@@ -13,7 +13,8 @@ const propTypes = {
   distance: PropTypes.string,
   setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
-  searchDataFetch: PropTypes.func.isRequired
+  searchDataFetch: PropTypes.func.isRequired,
+  searchDataError: PropTypes.func.isRequired
 };
 
 class SearchBar extends Component {
@@ -83,7 +84,12 @@ class SearchBar extends Component {
 
   getGeocodeAndFetch = (location) => {
     const dispatch = this.props.meta.dispatch;
-    const { setMapOptions, setActivePage, searchDataFetch } = this.props;
+    const {
+      setMapOptions,
+      setActivePage,
+      searchDataFetch,
+      searchDataError
+    } = this.props;
 
     this.geocoder.geocode({
       address: location,
@@ -118,7 +124,7 @@ class SearchBar extends Component {
         setActivePage(1);
         searchDataFetch();
       } else {
-        return alert('Sorry, there was an error!\nPlease check your internet connection and try again.');
+        return searchDataError();
       }
     });
   };

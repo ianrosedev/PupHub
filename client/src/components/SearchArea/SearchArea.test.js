@@ -17,7 +17,6 @@ describe('SearchArea', () => {
       isOpen: true,
       distance: '25',
       toggleSearchArea: jest.fn(),
-      setMapOptions: jest.fn(),
       setActivePage: jest.fn(),
       searchDataFetch: jest.fn()
     };

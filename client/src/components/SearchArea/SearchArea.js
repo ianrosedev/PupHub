@@ -11,7 +11,6 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   distance: PropTypes.string,
   toggleSearchArea: PropTypes.func.isRequired,
-  setMapOptions: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired
 };
@@ -20,7 +19,6 @@ const SearchArea = ({
   isOpen,
   distance,
   toggleSearchArea,
-  setMapOptions,
   setActivePage,
   searchDataFetch
 }) => {
@@ -72,10 +70,7 @@ const SearchArea = ({
         <SearchFormContainer
           initialValues={formInitialValues}
           distance={distance}
-          setMapOptions={setMapOptions}
           handleFieldChange={handleFieldChange}
-          setActivePage={setActivePage}
-          searchDataFetch={searchDataFetch}
         />
         <MapContainer />
       </div>

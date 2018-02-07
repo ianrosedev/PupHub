@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleSearchArea, setMapOptions, setActivePage, searchDataFetch } from '../../actions/actions';
+import { toggleSearchArea, setActivePage, searchDataFetch } from '../../actions/actions';
 import SearchArea from '../../components/SearchArea/SearchArea';
 
 const mapStateToProps = ({ search }) => ({
@@ -8,7 +8,6 @@ const mapStateToProps = ({ search }) => ({
 
 const mapDispatchToProps = {
   toggleSearchArea,
-  setMapOptions,
   setActivePage,
   searchDataFetch
 };

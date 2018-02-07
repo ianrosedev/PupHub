@@ -23,7 +23,8 @@ describe('SearchBar', () => {
       isDisabled: false,
       setMapOptions: jest.fn(),
       setActivePage: jest.fn(),
-      searchDataFetch: jest.fn()
+      searchDataFetch: jest.fn(),
+      searchDataError: jest.fn()
     };
 
     wrapper = shallow(<SearchBar {...props} />);
