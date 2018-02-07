@@ -35,15 +35,16 @@ const Card = ({ name, img, isAdoptionPending, onClick }) => {
       height: 200,
       backgroundColor: 'black',
       borderRadius: '5px 5px 0 0',
-      overflow: 'hidden',
-      textAlign: 'center',
       [`@media (max-width: ${sizes.small})`]: {
         width: 300,
         height: 300
       }
     },
     img: {
-      width: 'auto',
+      position: 'absolute',
+      left: -999,
+      right: -999,
+      margin: '0 auto',
       height: 200,
       [`@media (max-width: ${sizes.small})`]: {
         height: 300
@@ -56,6 +57,7 @@ const Card = ({ name, img, isAdoptionPending, onClick }) => {
     },
     ribbon: {
       position: 'absolute',
+      zIndex: 10,
       transform: 'rotate(-45deg)',
       top: 12,
       left: -40,
