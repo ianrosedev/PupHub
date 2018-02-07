@@ -5,6 +5,7 @@ import SearchFormContainer from '../../containers/SearchFormContainer/SearchForm
 import MapContainer from '../../containers/MapContainer/MapContainer';
 import Radium from 'radium';
 import colors from '../../media/styles/colors';
+import sizes from '../../media/styles/sizes';
 
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -29,7 +30,10 @@ const SearchArea = ({
     },
     content: {
       display: isOpen ? 'block' : 'none',
-      padding: '3vh 6vw'
+      padding: '3vh 6vw',
+      [`@media (max-width: ${sizes.small})`]: {
+        padding: '3vh 3vw'
+      }
     },
     toggleControl: {
       width: '100vw',

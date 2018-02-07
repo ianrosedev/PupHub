@@ -52,7 +52,8 @@ export const Home = () => {
       },
       [`@media (max-width: ${sizes.small})`]: {
         padding: 15,
-        lineHeight: 1.1
+        lineHeight: 1.1,
+        fontSize: 36
       }
     },
     block: {
