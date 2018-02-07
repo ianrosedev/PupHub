@@ -9,10 +9,15 @@ import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
 const propTypes = {
+  sex: PropTypes.array,
+  age: PropTypes.array,
+  goodWith: PropTypes.array,
+  distance: PropTypes.string,
   setMapOptions: PropTypes.func.isRequired,
-  handleFieldChange: PropTypes.func.isRequired,
   setActivePage: PropTypes.func.isRequired,
   searchDataFetch: PropTypes.func.isRequired,
+  searchDataError: PropTypes.func.isRequired,
+  handleFieldChange: PropTypes.func.isRequired,
   ...reduxFormPropTypes
 };
 
@@ -22,9 +27,10 @@ export const SearchForm = ({
   goodWith,
   distance,
   setMapOptions,
-  handleFieldChange,
   setActivePage,
-  searchDataFetch
+  searchDataFetch,
+  searchDataError,
+  handleFieldChange,
 }) => {
   const style = {
     base: {
@@ -96,6 +102,7 @@ export const SearchForm = ({
         setMapOptions={setMapOptions}
         setActivePage={setActivePage}
         searchDataFetch={searchDataFetch}
+        searchDataError={searchDataError}
       />
       <div style={style.searchOptions.base}>
         {/* Sex */}

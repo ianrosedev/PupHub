@@ -53,9 +53,10 @@ describe('SearchForm', () => {
       clearSubmit: jest.fn(),
       // custom
       setMapOptions: jest.fn(),
-      handleFieldChange: jest.fn(),
       setActivePage: jest.fn(),
       searchDataFetch: jest.fn(),
+      searchDataError: jest.fn(),
+      handleFieldChange: jest.fn()
     };
 
     wrapper = shallow(<SearchForm {...props} />, options);

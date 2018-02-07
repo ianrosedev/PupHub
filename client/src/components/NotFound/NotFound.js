@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <ContentCentered>
       <div>
-        <h1>Not Found!</h1>
+        <h3>Sorry, the page you are looking for isn't here!</h3>
       </div>
     </ContentCentered>
   );

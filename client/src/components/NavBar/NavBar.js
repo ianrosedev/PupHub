@@ -5,7 +5,7 @@ import Radium from 'radium';
 import colors from '../../media/styles/colors';
 import sizes from '../../media/styles/sizes';
 
-class NavBar extends Component {
+export class NavBar extends Component {
   state = {
     isDropdownOpen: false
   };
