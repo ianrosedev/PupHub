@@ -48,7 +48,9 @@ class Modal extends Component {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)'
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        // Stop Card ribbons from overlaying Modal
+        zIndex: 1000
       },
       base: {
         width: '80%',
