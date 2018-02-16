@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getDisplayName } from '../../helpers/getDisplayName/getDisplayName';
 import { throttle } from 'lodash';
 
 const handleWindowResize = (WrappedComponent) => {
@@ -14,6 +15,8 @@ const handleWindowResize = (WrappedComponent) => {
     handleResize = throttle(() => this.forceUpdate(), 50);
 
     render() {
+      HandleWindowResize.displayName = `HandleWindowResize(${getDisplayName(WrappedComponent)})`;
+
       return (
         <WrappedComponent {...this.props} />
       );
