@@ -18,7 +18,10 @@ describe('Map', () => {
   });
 
   it('renders without crashing', () => {
-    //console.log(wrapper.debug());
     wrapper;
+  });
+
+  it('renders 3 `div` elements', () => {
+    expect(wrapper.find('div')).toHaveLength(3);
   });
 });

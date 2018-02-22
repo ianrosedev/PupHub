@@ -121,4 +121,4 @@ export const Home = () => {
   );
 };
 
-export default scrollToTopOnMount(handleWindowResize(handleWindowResize(Home)));
+export default scrollToTopOnMount(handleWindowResize(Home));

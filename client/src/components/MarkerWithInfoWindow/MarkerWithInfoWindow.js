@@ -26,7 +26,8 @@ class MarkerWithInfoWindow extends Component {
     const style = {
       infoWindow: {
         container: {
-          margin: '0 10px'
+          margin: '0 10px',
+          maxHeight: 200
         },
         card: {
           backgroundColor: colors.primaryLightest,
