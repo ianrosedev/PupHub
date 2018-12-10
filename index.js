@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import compression from 'compression';
 import requestPromise from 'request-promise-native';
 import zips from 'zips';
-import { rescueGroupsKey } from './keys';
 
 const app = express();
 
@@ -13,13 +12,11 @@ app.use(helmet());
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-/*** For production use ***
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
-*/
 
 app.post('/search/general', (req, res) => {
   const buildNewRequest = (searchSettings) => {
@@ -37,7 +34,7 @@ app.post('/search/general', (req, res) => {
     };
 
     const body = {
-      apikey: rescueGroupsKey,
+      apikey: '66Rwkc8a',
       objectType: 'animals',
       objectAction: 'publicSearch',
       search: {
