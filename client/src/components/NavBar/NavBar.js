@@ -63,7 +63,6 @@ export class NavBar extends Component {
           position: 'absolute',
           top: 180,
           left: 0,
-          width: '100vw',
           backgroundColor: colors.primaryDark,
           borderBottom: `1px solid ${colors.primary}`,
           boxShadow: '0 3px 3px gray',

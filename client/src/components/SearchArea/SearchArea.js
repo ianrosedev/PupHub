@@ -34,7 +34,6 @@ const SearchArea = ({
       }
     },
     toggleControl: {
-      width: '100vw',
       height: 35,
       backgroundColor: colors.primaryDark,
       borderTop: `1px solid ${colors.primaryLight}`,
