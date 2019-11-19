@@ -34,7 +34,7 @@ app.post('/search/general', (req, res) => {
     };
 
     const body = {
-      apikey: '66Rwkc8a',
+      apikey: process.env.RESCUE_GROUPS_KEY,
       objectType: 'animals',
       objectAction: 'publicSearch',
       search: {
