@@ -1,7 +1,9 @@
 # PupHub
 Find dogs available for adoption in The U.S. with an easy to use search tool.
 
-[Check it out in action.](https://puphub.ianrosedev.com/)
+[Check it out in action.](https://puphubapp.herokuapp.com/)  **Please give it a second, free hosting*
+
+## *These instructions don't work anymore! - Keeping for posterity*
 
 ## Installation
 **You’ll need to have Node >= 6 on your machine.**
